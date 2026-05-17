@@ -28,6 +28,7 @@ eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
 
 # Mise
+export PATH="$HOME/.local/bin:$PATH"
 if [[ "$OSTYPE" == "darwin"* ]]; then
   eval "$(mise activate zsh)"
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
