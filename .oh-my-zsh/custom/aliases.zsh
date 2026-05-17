@@ -12,7 +12,7 @@ alias omza-r='source /home/jackw/.oh-my-zsh/custom/aliases.zsh'
 alias cat='batcat'
 alias dotfiles='cd /home/jackw/dotfiles/'
 alias dotsync='cd /home/jackw/dotfiles/ && git add . && git commit -m "update dotfiles" && git push'
-alias nvfs='nvim $(fzf -m --preview="cat --color=always {}")
+alias nvfs='nvim $(fzf -m --preview="cat --color=always {}")'
 
 #eza aliases
 alias ls='eza --icons'
