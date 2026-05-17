@@ -1,14 +1,11 @@
-# Fastfetch
-fastfetch 
-
 # Aliases
 alias cw='cd /mnt/c/users/jackw'
 alias desktop='cd /mnt/c/users/jackw/Desktop'
 alias downloads='cd /mnt/c/users/jackw/Downloads'
 alias jdrive='cd /mnt/j'
 alias psconfig='nvim /mnt/c/users/jackw/OneDrive/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1'
-alias omza='nvim /home/jackw/.oh-my-zsh/custom/aliases.zsh'
-alias omza-r='source /home/jackw/.oh-my-zsh/custom/aliases.zsh'
+alias omza='nvim ~/.config/zsh/aliases.zsh'
+alias omza-r='source ~/.config/zsh/aliases.zsh'
 alias cat='batcat'
 alias dotfiles='cd /home/jackw/dotfiles/'
 alias dotsync='cd /home/jackw/dotfiles/ && git add . && git commit -m "update dotfiles" && git push'
