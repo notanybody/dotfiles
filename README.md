@@ -3,7 +3,7 @@
 Personal dotfiles for my terminal setup. 
 
 ## Stack
-- zsh + Oh My ZSH 
+- zsh
 - Neovim + LazyVIM
 - Starship
 - tmux
