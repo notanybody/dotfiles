@@ -7,14 +7,11 @@ setopt share_history
 # Completion
 autoload -Uz compinit && compinit
 
-# Syntax Highlighting
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-  source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  [ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
-  plug "zsh-users/zsh-syntax-highlighting"
-fi
+# Zap
+[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
+
+plug "zsh-users/zsh-syntax-highlighting"
+plug "zsh-users/zsh-autosuggestions"
 
 # Aliases
 source ~/.config/zsh/aliases.zsh
