@@ -12,7 +12,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
   source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  [ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
+  plug "zsh-users/zsh-syntax-highlighting"
 fi
 
 # Aliases
