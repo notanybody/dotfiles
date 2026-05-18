@@ -23,7 +23,7 @@ palette = "tokyo_night"
   truncate_to_repo = false
 
   [git_branch]
-  symbol = " "
+  symbol = ""
   style = "purple"
   truncation_length = 20
 
@@ -36,11 +36,11 @@ palette = "tokyo_night"
   staged = "+"
 
   [nodejs]
-  symbol = " "
+  symbol = ""
   style = "green"
 
   [python]
-  symbol = " "
+  symbol = "🐍"
   style = "yellow"
 
   [time]
