@@ -11,7 +11,8 @@ alias lt='eza --tree --icons'
 alias za='nvim ~/.config/zsh/aliases.zsh'
 alias zar='source ~/.config/zsh/aliases.zsh'
 alias dotfiles='cd ~/dotfiles'
-alias dotsync='cd ~/dotfiles && git add . && git commit -m "update dotfiles" && git push'
+alias dotpush='cd ~/dotfiles && git add . && git commit -m "update dotfiles" && git push'
+alias dotpull='cd ~/dotfiles && git pull'
 
 # Mac Functions
 if [[ "$OSTYPE" == "darwin"* ]]; then
