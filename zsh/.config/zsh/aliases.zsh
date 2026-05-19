@@ -8,8 +8,8 @@ alias la='eza -la --icons --git'
 alias lt='eza --tree --icons'
 
 # Alias Config + GitHub Push
-alias omza='nvim ~/.config/zsh/aliases.zsh'
-alias omza-r='source ~/.config/zsh/aliases.zsh'
+alias za='nvim ~/.config/zsh/aliases.zsh'
+alias zar='source ~/.config/zsh/aliases.zsh'
 alias dotfiles='cd ~/dotfiles'
 alias dotsync='cd ~/dotfiles && git add . && git commit -m "update dotfiles" && git push'
 
