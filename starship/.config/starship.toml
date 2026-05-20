@@ -1,7 +1,7 @@
 scan_timeout = 1000
-palette = "tokyo_night"
+palette = "tokyo_night_storm"
 
-  [palettes.tokyo_night]
+  [palettes.tokyo_night_storm]
   blue = "#7aa2f7"
   cyan = "#7dcfff"
   purple = "#bb9af7"
@@ -10,7 +10,7 @@ palette = "tokyo_night"
   yellow = "#e0af68"
   orange = "#ff9e64"
   fg = "#c0caf5"
-  bg = "#1a1b26"
+  bg = "#24283b"
   comment = "#565f89"
 
   [character]
