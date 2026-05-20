@@ -51,7 +51,7 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   alias downloads='cd /mnt/c/users/jackw/Downloads'
   alias jdrive='cd /mnt/j'
   alias wincommands='nvim /mnt/c/users/jackw/OneDrive/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1'
-  alias psconfig='nvim /mnt/c/Users/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json'
+  alias psconfig='nvim /mnt/c/Users/jackw/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json'
   alias cat='batcat'
   alias nvfs='selected=$(fzf -m --preview="batcat --color=always --style=numbers {}") && [ -n "$selected" ] && nvim $selected'
   export PATH=$PATH:/snap/bin
