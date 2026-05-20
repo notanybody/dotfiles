@@ -55,6 +55,7 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   alias cat='batcat'
   alias nvfs='selected=$(fzf -m --preview="batcat --color=always --style=numbers {}") && [ -n "$selected" ] && nvim $selected'
   export PATH=$PATH:/snap/bin
+  export EDITOR=nvim
 
   # Startup
   cd /mnt/c/users/jackw
