@@ -7,5 +7,9 @@ Personal dotfiles for my terminal setup.
 - Neovim + LazyVIM
 - Starship
 - tmux
-- Tokyo Night Storm theme
+- eza
+
+### Theme
+- Tokyo Night Storm
+
 
