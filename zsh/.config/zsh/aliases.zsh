@@ -42,17 +42,17 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   alias cat='bat'
   alias nvfs='selected=$(fzf -m --preview="bat --color=always --style=numbers {}") && [ -n "$selected" ] && nvim $selected'
 
-  #Streamlink Recording
+ #Streamlink Recording
   function record() {
       streamlink "twitch.tv/$1" "${2:-best}" --record "/Volumes/personal_folder/twitch-recordings/${1}_$(date +%Y%m%d_%H%M%S).mkv"
     }
 
-  #YouTube Downloads
+ #YouTube Downloads
   function ytdl() {
       yt-dlp "$1" --merge-output-format mp4 --restrict-filenames -o "/Volumes/personal_folder/youtube-downloads/%(title)s_$(date +%Y%m%d).%(ext)s"
     }
 
-  #Organize Downloads on NAS
+ #Organize Downloads on NAS
   function organize-downloads() {
       for file in /Volumes/personal_folder/youtube-downloads/*.mp4; do
         date=$(echo "$file" | grep -oE '[0-9]{8}' | tail -1)
@@ -73,6 +73,7 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   alias desktop='cd /mnt/c/users/jackw/Desktop'
   alias downloads='cd /mnt/c/users/jackw/Downloads'
   alias jdrive='cd /mnt/j'
+  alias sdrive='cd /mnt/s'
   alias wincommands='nvim /mnt/c/users/jackw/OneDrive/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1'
   alias psconfig='nvim /mnt/c/Users/jackw/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json'
   alias cat='batcat'
