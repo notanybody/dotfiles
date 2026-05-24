@@ -5,7 +5,7 @@ HISTFILE=~/.zsh_history
 setopt share_history
 
 # Completion
-autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit -C
 
 # Zap
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
