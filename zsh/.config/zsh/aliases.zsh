@@ -80,6 +80,4 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   export PATH=$PATH:/snap/bin
   export EDITOR=nvim
 
-  # Startup
-  cd /mnt/c/users/jackw
 fi
