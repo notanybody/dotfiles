@@ -1,0 +1,29 @@
+# List of Streamers
+# Follow format: Name|URL|Timezone
+
+# Twitch
+bao|www.twitch.tv/bao|America/Los_Angeles
+deme|www.twitch.tv/deme|America/New_York
+fefe|www.twitch.tv/fefe|America/Los_Angeles
+ikumi|www.twitch.tv/ikumi|America/New_York
+lucypyre|www.twitch.tv/LucyPyre|America/New_York
+ohkaiya|www.twitch.tv/OhKaiya|America/New_York
+projektmelody|www.twitch.tv/ProjektMelody|America/New_York
+rainhoe|www.twitch.tv/rainhoe|America/Los_Angeles
+shylily|www.twitch.tv/shylily|Europe/Berlin
+sinder|www.twitch.tv/sinder|America/Los_Angeles
+spite|www.twitch.tv/spite|America/New_York
+
+#YouTube
+Shishiro Botan|www.youtube.com/@ShishiroBotan/live|Asia/Tokyo
+Houshou Marine|www.youtube.com/@HoushouMarine/live|Asia/Tokyo
+Tsunomaki Watame|www.youtube.com/@TsunomakiWatame/live|Asia/Tokyo
+Maid Mint|www.youtube.com/@mintfantome/live|America/New_York
+Shigure Ui|www.youtube.com/@ui_shig/live|Asia/Tokyo
+Nimi Nightmare|www.youtube.com/@niminightmare/live|America/Los_Angeles
+Kikirara Vivi|www.youtube.com/@kikiraravivi/live|Asia/Tokyo
+Todoroki Hajime|www.youtube.com/@TodorokiHajime/live|Asia/Tokyo
+Shiori Novella|www.youtube.com/@ShioriNovella/live|America/Los_Angeles
+Usada Pekora|www.youtube.com/@UsadaPekora/live|Asia/Tokyo
+Nerissa Ravencroft|www.youtube.com/@NerissaRavencroft/live|America/Los_Angeles
+FUWAMOCO|www.youtube.com/@FUWAMOCOch/live|Asia/Tokyo
