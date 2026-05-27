@@ -3,11 +3,15 @@
 Personal dotfiles for my terminal setup. 
 
 ## Stack
-- zsh
 - Neovim + LazyVIM
 - Starship
-- tmux
+- btop
 - eza
+- git 
+- scripts
+- tmux
+- yazi
+- zsh
 
 ### Theme
 - Tokyo Night Storm
