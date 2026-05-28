@@ -2,17 +2,17 @@
 # Follow format: Name|URL|Timezone
 
 # Twitch
-bao|www.twitch.tv/bao|America/Los_Angeles
-deme|www.twitch.tv/deme|Asia/Manila
-fefe|www.twitch.tv/fefe|America/Los_Angeles
-ikumi|www.twitch.tv/ikumi|America/New_York
+Bao|www.twitch.tv/bao|America/Los_Angeles
+Deme|www.twitch.tv/deme|Asia/Manila
+Fefe|www.twitch.tv/fefe|America/Los_Angeles
+Ikumi|www.twitch.tv/ikumi|America/New_York
 LucyPyre|www.twitch.tv/LucyPyre|America/New_York
 OhKaiya|www.twitch.tv/OhKaiya|America/New_York
-projektmelody|www.twitch.tv/ProjektMelody|America/New_York
-rainhoe|www.twitch.tv/rainhoe|America/Los_Angeles
-shylily|www.twitch.tv/shylily|Europe/Berlin
-sinder|www.twitch.tv/sinder|America/Los_Angeles
-spite|www.twitch.tv/spite|America/New_York
+ProjektMelody|www.twitch.tv/ProjektMelody|America/New_York
+Rainhoe|www.twitch.tv/rainhoe|America/Los_Angeles
+Shylily|www.twitch.tv/shylily|Europe/Berlin
+Sinder|www.twitch.tv/sinder|America/Los_Angeles
+Spite|www.twitch.tv/spite|America/New_York
 
 #YouTube
 Shishiro Botan|www.youtube.com/@ShishiroBotan/live|Asia/Tokyo
