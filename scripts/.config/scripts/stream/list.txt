@@ -6,8 +6,8 @@ bao|www.twitch.tv/bao|America/Los_Angeles
 deme|www.twitch.tv/deme|Asia/Manila
 fefe|www.twitch.tv/fefe|America/Los_Angeles
 ikumi|www.twitch.tv/ikumi|America/New_York
-lucypyre|www.twitch.tv/LucyPyre|America/New_York
-ohkaiya|www.twitch.tv/OhKaiya|America/New_York
+LucyPyre|www.twitch.tv/LucyPyre|America/New_York
+OhKaiya|www.twitch.tv/OhKaiya|America/New_York
 projektmelody|www.twitch.tv/ProjektMelody|America/New_York
 rainhoe|www.twitch.tv/rainhoe|America/Los_Angeles
 shylily|www.twitch.tv/shylily|Europe/Berlin
