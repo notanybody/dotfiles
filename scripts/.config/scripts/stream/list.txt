@@ -3,7 +3,7 @@
 
 # Twitch
 bao|www.twitch.tv/bao|America/Los_Angeles
-deme|www.twitch.tv/deme|America/New_York
+deme|www.twitch.tv/deme|Asia/Manila
 fefe|www.twitch.tv/fefe|America/Los_Angeles
 ikumi|www.twitch.tv/ikumi|America/New_York
 lucypyre|www.twitch.tv/LucyPyre|America/New_York
