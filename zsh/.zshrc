@@ -33,5 +33,9 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   eval "$(~/.local/bin/mise activate zsh)"
 fi
 
+# Scripts
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/scripts:$PATH"
+
 # Fastfetch
 fastfetch
