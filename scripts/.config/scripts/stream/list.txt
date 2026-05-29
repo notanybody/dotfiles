@@ -13,17 +13,19 @@ Rainhoe|www.twitch.tv/rainhoe|America/Los_Angeles
 Shylily|www.twitch.tv/shylily|Europe/Berlin
 Sinder|www.twitch.tv/sinder|America/Los_Angeles
 Spite|www.twitch.tv/spite|America/New_York
+Atrioc|twitch.tv/Atrioc|America/Los_Angeles
+SaintSakura|twitch.tv/saintsakura|America/Los_Angeles
 
 #YouTube
-Shishiro Botan|www.youtube.com/@ShishiroBotan/live|Asia/Tokyo
-Houshou Marine|www.youtube.com/@HoushouMarine/live|Asia/Tokyo
-Tsunomaki Watame|www.youtube.com/@TsunomakiWatame/live|Asia/Tokyo
-Maid Mint|www.youtube.com/@mintfantome/live|America/New_York
-Shigure Ui|www.youtube.com/@ui_shig/live|Asia/Tokyo
-Nimi Nightmare|www.youtube.com/@niminightmare/live|America/Los_Angeles
-Kikirara Vivi|www.youtube.com/@kikiraravivi/live|Asia/Tokyo
-Todoroki Hajime|www.youtube.com/@TodorokiHajime/live|Asia/Tokyo
-Shiori Novella|www.youtube.com/@ShioriNovella/live|America/Los_Angeles
-Usada Pekora|www.youtube.com/@UsadaPekora/live|Asia/Tokyo
-Nerissa Ravencroft|www.youtube.com/@NerissaRavencroft/live|America/Los_Angeles
-FUWAMOCO|www.youtube.com/@FUWAMOCOch/live|Asia/Tokyo
+Shishiro Botan|www.youtube.com/channel/UCUKD-uaobj9jiqB-VXt71mA/live|Asia/Tokyo
+Houshou Marine|www.youtube.com/channel/UCCzUftO8KOVkV4wQG1vkUvg/live|Asia/Tokyo
+Tsunomaki Watame|www.youtube.com/channel/UCqm3BQLlJfvkTsX_hvm0UmA/live|Asia/Tokyo
+Maid Mint|www.youtube.com/channel/UCcHHkJ98eSfa5aj0mdTwwLQ/live|America/New_York
+Shigure Ui|www.youtube.com/channel/UCt30jJgChL8qeT9VPadidSw/live|Asia/Tokyo
+Nimi Nightmare|www.youtube.com/channel/UCIfAvpeIWGHb0duCkMkmm2Q/live|America/Los_Angeles
+Kikirara Vivi|www.youtube.com/channel/UCGzTVXqMQHa4AgJVJIVvtDQ/live|Asia/Tokyo
+Todoroki Hajime|www.youtube.com/channel/UC1iA6_NT4mtAcIII6ygrvCw/live|Asia/Tokyo
+Shiori Novella|www.youtube.com/channel/UCgnfPPb9JI3e9A4cXHnWbyg/live|America/Los_Angeles
+Usada Pekora|www.youtube.com/channel/UC1DCedRgGHBdm81E1llLhOQ/live|Asia/Tokyo
+Nerissa Ravencroft|www.youtube.com/channel/UC_sFNM0z0MWm9A6WlKPuMMg/live|America/Los_Angeles
+FUWAMOCO|www.youtube.com/channel/UCt9H_RpQzhxzlyBxFqrdHqA/live|Asia/Tokyo
