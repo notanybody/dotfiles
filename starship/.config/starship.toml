@@ -14,8 +14,8 @@ palette = "tokyo_night_storm"
   comment = "#565f89"
 
   [character]
-  success_symbol = "[ ](blue)"
-  error_symbol = "[ ](red)"
+  success_symbol = "[ ](blue)"
+  error_symbol = "[ ](red)"
 
   [directory]
   style = "cyan"
