@@ -13,6 +13,7 @@ alias zar='source ~/.config/zsh/aliases.zsh'
 alias dotfiles='cd ~/dotfiles'
 alias gp='git add . && git commit && git push'
 alias gl='git pull'
+alias sv='source .venv/bin/activate'
 
 # FZF Tokyo Night Storm Theme
   export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
