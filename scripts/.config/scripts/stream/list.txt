@@ -16,6 +16,7 @@ Spite|www.twitch.tv/spite|America/New_York
 Atrioc|twitch.tv/Atrioc|America/Los_Angeles
 SaintSakura|twitch.tv/saintsakura|America/Los_Angeles
 hyoon|twitch.tv/hyoon|America/New_York
+TheBurntPeanut|twitch.tv/theburntpeanut|America/Chicago
 
 #YouTube
 Shishiro Botan|www.youtube.com/channel/UCUKD-uaobj9jiqB-VXt71mA/live|Asia/Tokyo
