@@ -2,34 +2,34 @@
 # Follow format: Name|URL|Timezone
 
 # Twitch
+Atrioc|twitch.tv/Atrioc|America/Los_Angeles
 Bao|www.twitch.tv/bao|America/Los_Angeles
 Deme|www.twitch.tv/deme|Asia/Manila
 Fefe|www.twitch.tv/fefe|America/Los_Angeles
+Hyoon|twitch.tv/hyoon|America/New_York
 Ikumi|www.twitch.tv/ikumi|America/New_York
 LucyPyre|www.twitch.tv/LucyPyre|America/New_York
 OhKaiya|www.twitch.tv/OhKaiya|America/New_York
 ProjektMelody|www.twitch.tv/ProjektMelody|America/New_York
 Rainhoe|www.twitch.tv/rainhoe|America/Los_Angeles
+SaintSakura|twitch.tv/saintsakura|America/Los_Angeles
 Shylily|www.twitch.tv/shylily|Europe/Berlin
 Sinder|www.twitch.tv/sinder|America/Los_Angeles
 Spite|www.twitch.tv/spite|America/New_York
-Atrioc|twitch.tv/Atrioc|America/Los_Angeles
-SaintSakura|twitch.tv/saintsakura|America/Los_Angeles
-hyoon|twitch.tv/hyoon|America/New_York
 TheBurntPeanut|twitch.tv/theburntpeanut|America/Chicago
 
 #YouTube
-Shishiro Botan|www.youtube.com/channel/UCUKD-uaobj9jiqB-VXt71mA/live|Asia/Tokyo
-Houshou Marine|www.youtube.com/channel/UCCzUftO8KOVkV4wQG1vkUvg/live|Asia/Tokyo
-Tsunomaki Watame|www.youtube.com/channel/UCqm3BQLlJfvkTsX_hvm0UmA/live|Asia/Tokyo
-Maid Mint|www.youtube.com/channel/UCcHHkJ98eSfa5aj0mdTwwLQ/live|America/New_York
-Shigure Ui|www.youtube.com/channel/UCt30jJgChL8qeT9VPadidSw/live|Asia/Tokyo
-Nimi Nightmare|www.youtube.com/channel/UCIfAvpeIWGHb0duCkMkmm2Q/live|America/Los_Angeles
-Kikirara Vivi|www.youtube.com/channel/UCGzTVXqMQHa4AgJVJIVvtDQ/live|Asia/Tokyo
-Todoroki Hajime|www.youtube.com/channel/UC1iA6_NT4mtAcIII6ygrvCw/live|Asia/Tokyo
-Shiori Novella|www.youtube.com/channel/UCgnfPPb9JI3e9A4cXHnWbyg/live|America/Los_Angeles
-Usada Pekora|www.youtube.com/channel/UC1DCedRgGHBdm81E1llLhOQ/live|Asia/Tokyo
-Nerissa Ravencroft|www.youtube.com/channel/UC_sFNM0z0MWm9A6WlKPuMMg/live|America/Los_Angeles
 FUWAMOCO|www.youtube.com/channel/UCt9H_RpQzhxzlyBxFqrdHqA/live|Asia/Tokyo
-TimTheTatman|www.youtube.com/channel/UCXBE_QQSZueB8082ml5fslg/live|America/New_York
+Houshou Marine|www.youtube.com/channel/UCCzUftO8KOVkV4wQG1vkUvg/live|Asia/Tokyo
+Kikirara Vivi|www.youtube.com/channel/UCGzTVXqMQHa4AgJVJIVvtDQ/live|Asia/Tokyo
+Maid Mint|www.youtube.com/channel/UCcHHkJ98eSfa5aj0mdTwwLQ/live|America/New_York
+Nerissa Ravencroft|www.youtube.com/channel/UC_sFNM0z0MWm9A6WlKPuMMg/live|America/Los_Angeles
+Nimi Nightmare|www.youtube.com/channel/UCIfAvpeIWGHb0duCkMkmm2Q/live|America/Los_Angeles
+Shigure Ui|www.youtube.com/channel/UCt30jJgChL8qeT9VPadidSw/live|Asia/Tokyo
+Shiori Novella|www.youtube.com/channel/UCgnfPPb9JI3e9A4cXHnWbyg/live|America/Los_Angeles
 Shirakami Fubuki|www.youtube.com/channel/UCdn5BQ06XqgXoAxIhbqw5Rg/live|Asia/Tokyo
+Shishiro Botan|www.youtube.com/channel/UCUKD-uaobj9jiqB-VXt71mA/live|Asia/Tokyo
+TimTheTatman|www.youtube.com/channel/UCXBE_QQSZueB8082ml5fslg/live|America/New_York
+Todoroki Hajime|www.youtube.com/channel/UC1iA6_NT4mtAcIII6ygrvCw/live|Asia/Tokyo
+Tsunomaki Watame|www.youtube.com/channel/UCqm3BQLlJfvkTsX_hvm0UmA/live|Asia/Tokyo
+Usada Pekora|www.youtube.com/channel/UC1DCedRgGHBdm81E1llLhOQ/live|Asia/Tokyo
