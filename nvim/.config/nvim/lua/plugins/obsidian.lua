@@ -3,6 +3,7 @@ return {
   version = "*",
   lazy = true,
   ft = "markdown",
+  cond = vim.fn.has("mac") == 0,
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
