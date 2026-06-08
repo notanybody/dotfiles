@@ -1,6 +1,6 @@
 # dotfiles
 
-Personal dotfiles for my terminal setup. 
+Personal dotfiles & scripts for my terminal setup. 
 
 ## Stack
 - Neovim + LazyVIM
