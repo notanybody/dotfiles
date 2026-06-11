@@ -17,7 +17,7 @@ Shylily|www.twitch.tv/shylily|Europe/Berlin
 Sinder|www.twitch.tv/sinder|America/Los_Angeles
 Spite|www.twitch.tv/spite|America/New_York
 TheBurntPeanut|twitch.tv/theburntpeanut|America/Chicago
-GHOSTIExUWU|twitch.tv/ghostiexuwu|America/Los_Angeles
+GHOSTIExUWU|twitch.tv/ghostiexuwu|Europe/Berlin
 
 #YouTube
 FUWAMOCO|www.youtube.com/channel/UCt9H_RpQzhxzlyBxFqrdHqA/live|Asia/Tokyo
