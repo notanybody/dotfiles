@@ -14,6 +14,7 @@ alias dotfiles='cd ~/dotfiles'
 alias gp='git add . && git commit && git push'
 alias gl='git pull'
 alias sv='source .venv/bin/activate'
+export EDITOR=nvim
 
 # FZF Tokyo Night Storm Theme
   export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
@@ -81,6 +82,5 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   alias nvfs='selected=$(fzf -m --preview="batcat --color=always --style=numbers {}") && [ -n "$selected" ] && nvim $selected'
   export PATH=$PATH:/snap/bin
   export PATH=$PATH:~/scripts/
-  export EDITOR=nvim
 
 fi

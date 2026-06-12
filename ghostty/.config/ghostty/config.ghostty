@@ -4,11 +4,13 @@ font-family = FiraCode Nerd Font
 # Opacity
 background-opacity = 0.9
 
+# Cursor Style
+cursor-style = block_hollow
+cursor-color = #37e57b
+
 # Tokyo Night — Storm variant (most popular)
 background = #24283b
 foreground = #c0caf5
-
-cursor-color = #c0caf5
 
 selection-background = #364a82
 selection-foreground = #c0caf5
