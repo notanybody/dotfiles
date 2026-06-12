@@ -4,10 +4,13 @@
 # Twitch
 Atrioc|twitch.tv/Atrioc|America/Los_Angeles
 Bao|www.twitch.tv/bao|America/Los_Angeles
+CottonTailVA|twitch.tv/cottontailva|America/Los_Angeles
 Deme|www.twitch.tv/deme|Asia/Manila
 Fefe|www.twitch.tv/fefe|America/Los_Angeles
+GHOSTIExUWU|twitch.tv/ghostiexuwu|Europe/Berlin
 Hyoon|twitch.tv/hyoon|America/New_York
 Ikumi|www.twitch.tv/ikumi|America/New_York
+Lilah|twitch.tv/lilah|Europe/Berlin
 LucyPyre|www.twitch.tv/LucyPyre|America/New_York
 OhKaiya|www.twitch.tv/OhKaiya|America/New_York
 ProjektMelody|www.twitch.tv/ProjektMelody|America/New_York
@@ -17,7 +20,7 @@ Shylily|www.twitch.tv/shylily|Europe/Berlin
 Sinder|www.twitch.tv/sinder|America/Los_Angeles
 Spite|www.twitch.tv/spite|America/New_York
 TheBurntPeanut|twitch.tv/theburntpeanut|America/Chicago
-GHOSTIExUWU|twitch.tv/ghostiexuwu|Europe/Berlin
+Tiffy|twitch.tv/tiffy|America/New_York
 
 #YouTube
 FUWAMOCO|www.youtube.com/channel/UCt9H_RpQzhxzlyBxFqrdHqA/live|Asia/Tokyo
