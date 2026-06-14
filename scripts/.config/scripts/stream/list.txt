@@ -22,6 +22,7 @@ Spite|www.twitch.tv/spite|America/New_York
 TheBurntPeanut|twitch.tv/theburntpeanut|America/Chicago
 Tiffy|twitch.tv/tiffy|America/New_York
 Nekofi|twitch.tv/nekofi|America/Los_Angeles
+Saiiren|twitch.tv/saiiren|Europe/Brussels
 
 #YouTube
 FUWAMOCO|www.youtube.com/channel/UCt9H_RpQzhxzlyBxFqrdHqA/live|Asia/Tokyo
