@@ -1,0 +1,56 @@
+# See https://git-scm.com/docs/git-config
+
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+[core]
+	pager = delta
+	editor = nvim
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	theme = tokyonight_night
+	minus-style                   = syntax "#52313f"
+	minus-non-emph-style          = syntax "#52313f"
+	minus-emph-style              = syntax "#763842"
+	minus-empty-line-marker-style = syntax "#52313f"
+	line-numbers-minus-style      = "#914c54"
+	plus-style                    = syntax "#2b485a"
+	plus-non-emph-style           = syntax "#2b485a"
+	plus-emph-style               = syntax "#316172"
+	plus-empty-line-marker-style  = syntax "#2b485a"
+	line-numbers-plus-style       = "#449dab"
+	line-numbers-zero-style       = "#3b4261"
+[init]
+	defaultBranch = master
+[pull]
+	rebase = true 			 # Rebase (instead of merge) on pull
+[push]
+	autoSetupRemote = true   # Automatically set upstream branch on push
+[diff]
+	algorithm = histogram    # Clearer diffs on moved/edited lines
+	colorMoved = plain       # Highlight moved blocks in diffs
+	mnemonicPrefix = true    # More intuitive refs in diff output
+[commit]
+	verbose = true           # Include diff comment in commit message template
+[column]
+	ui = auto 			     # Output in columns when possible
+[branch]
+	sort = -committerdate    # Sort branches by most recent commit first
+[tag]
+	sort = -version:refname  # Sort version numbers as you would expect
+[rerere]
+	enabled = true           # Record and reuse conflict resolutions
+	autoupdate = true        # Apply stored conflict resolutions automatically
+[user]
+	name = Jackson Willis
+	email = jackwillisnyc@gmail.com
+[credential "https://github.com"]
+	helper = 
+	helper = !/home/senchou/.local/share/mise/installs/gh/2.98.0/gh_2.98.0_linux_amd64/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/home/senchou/.local/share/mise/installs/gh/2.98.0/gh_2.98.0_linux_amd64/bin/gh auth git-credential
