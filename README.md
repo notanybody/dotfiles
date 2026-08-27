@@ -27,13 +27,28 @@ toolkit (`tdl`, `a`/`c`/`cx`/`cy`, etc. — Omarchy only auto-loads that stuff
 into bash), plus a `git/config` at Omarchy's XDG path with delta/editor
 settings layered onto Omarchy's own (keeps its `gh` credential helpers), and
 an `nvim/lua/config/autocmds.lua` with a CRLF-strip added on top of Omarchy's
-version (not the stock LazyVim one in the shared `nvim/` package).
+version, and a `streamlink/config` (`player=mpv`) since this machine has
+`mpv` rather than `vlc`, which streamlink otherwise looks for by default.
 
 **On an Omarchy machine, stow `omarchy/` and skip the shared `tmux/`,
 `btop/`, `zsh/`, and `git/` packages** — stowing them after (or instead of)
 `omarchy/` will shadow these overrides. `nvim/`, `starship/`, `lazygit/`,
-`eza/`, and `yazi/` are still shared as normal, except for
-`nvim/lua/plugins/obsidian.lua`, which `omarchy/` overrides (see below).
+`eza/`, and `yazi/` are still shared as normal. `nvim/` deliberately does
+**not** track `lua/plugins/obsidian.lua`, `lua/config/options.lua`,
+`lazyvim.json`, or `lazy-lock.json` — Omarchy injects/manages these itself
+(a `remote_clipboard` setup, the `neo-tree` extra, and Lazy's actual
+installed-plugin lockfile), so a stale repo copy would silently overwrite
+working machine state. `omarchy/` supplies its own `obsidian.lua` instead
+(see below); the WSL machine does the same via `wsl/`.
+
+## Machine-specific: WSL (Beelink)
+
+Jack's Windows/WSL Ubuntu Beelink is still in daily use (travels alongside
+the Omarchy laptop as a gaming PC) — it is **not** retired. `wsl/` currently
+holds just `.config/nvim/lua/plugins/obsidian.lua`, pointing `obsidian.nvim`
+at the WSL-side vault path `/mnt/j/obsidian-vault`. Stow `wsl/` alongside the
+shared packages there; it only overrides the one file that needs a
+machine-specific path.
 
 ### NAS mount (Omarchy)
 
@@ -52,7 +67,8 @@ be recreated by hand on any new machine — it's outside `$HOME` and holds a
 plaintext password.
 
 `omarchy/.config/nvim/lua/plugins/obsidian.lua` points `obsidian.nvim` at
-`/mnt/nas/obsidian-vault`, overriding the shared `nvim/` package's version
-(which still has a stale WSL path from before the Omarchy move).
+`/mnt/nas/obsidian-vault` — this is a NAS-side mirror of the same vault the
+WSL machine reaches directly at `/mnt/j/obsidian-vault` (see the WSL section
+above).
 
 
