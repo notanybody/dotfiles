@@ -2,10 +2,10 @@
 #
 # --- Shared ---
 # eza Aliases
-alias ls='eza --icons'
+alias ls='eza --icons=auto'
 alias ll='eza -l --icons --git'
 alias la='eza -la --icons --git'
-alias lt='eza --tree --icons'
+alias lt='eza --tree --icons=auto'
 
 # Alias Config + GitHub Push
 alias za='nvim ~/.config/zsh/aliases.zsh'
