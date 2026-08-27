@@ -3,7 +3,6 @@ return {
   version = "*",
   lazy = true,
   ft = "markdown",
-  cond = vim.fn.has("mac") == 0,
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
@@ -11,7 +10,7 @@ return {
     workspaces = {
       {
         name = "personal",
-        path = "/mnt/j/obsidian-vault",
+        path = "/mnt/nas/obsidian-vault",
       },
     },
   },

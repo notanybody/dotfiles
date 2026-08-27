@@ -32,6 +32,27 @@ version (not the stock LazyVim one in the shared `nvim/` package).
 **On an Omarchy machine, stow `omarchy/` and skip the shared `tmux/`,
 `btop/`, `zsh/`, and `git/` packages** — stowing them after (or instead of)
 `omarchy/` will shadow these overrides. `nvim/`, `starship/`, `lazygit/`,
-`eza/`, and `yazi/` are still shared as normal.
+`eza/`, and `yazi/` are still shared as normal, except for
+`nvim/lua/plugins/obsidian.lua`, which `omarchy/` overrides (see below).
+
+### NAS mount (Omarchy)
+
+Obsidian vault and other personal files live on a UGREEN NAS
+(`192.168.68.55`, share `personal_folder`), mounted at `/mnt/nas` via
+`/etc/fstab`:
+
+```
+//192.168.68.55/personal_folder /mnt/nas cifs credentials=/etc/samba/credentials-nas,uid=1000,gid=1000,iocharset=utf8,vers=3.0,noauto,x-systemd.automount,x-systemd.idle-timeout=60,_netdev 0 0
+```
+
+`noauto,x-systemd.automount` mounts on first access instead of blocking boot
+if the NAS is off. The credentials file itself (`/etc/samba/credentials-nas`,
+`username=`/`password=` lines, `chmod 600`) is **not** tracked here and must
+be recreated by hand on any new machine — it's outside `$HOME` and holds a
+plaintext password.
+
+`omarchy/.config/nvim/lua/plugins/obsidian.lua` points `obsidian.nvim` at
+`/mnt/nas/obsidian-vault`, overriding the shared `nvim/` package's version
+(which still has a stale WSL path from before the Omarchy move).
 
 
