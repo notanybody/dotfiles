@@ -1,0 +1,9 @@
+xkb_symbols "basic" {
+    include "us(basic)"
+    key <AE13> { [ BackSpace ] };
+    key <MUHE> { [ space ] };
+    key <HENK> { [ space ] };
+    key <HKTG> { [ space ] };
+    key <AB11> { [ Shift_R ]};
+    modifier_map Shift { <AB11> };
+};
