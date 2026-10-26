@@ -2,17 +2,16 @@
 #
 # --- Shared ---
 # eza Aliases
-alias ls='eza --icons'
+alias ls='eza --icons=auto'
 alias ll='eza -l --icons --git'
 alias la='eza -la --icons --git'
-alias lt='eza --tree --icons'
+alias lt='eza --tree --icons=auto'
 
 # Alias Config + GitHub Push
 alias za='nvim ~/.config/zsh/aliases.zsh'
 alias zar='source ~/.config/zsh/aliases.zsh'
-alias dotfiles='cd ~/dotfiles'
-alias gp='git add . && git commit && git push'
-alias gl='git pull'
+alias gp='git add . && git commit && git pull --rebase && git push'
+alias gl='git pull --rebase'
 alias sv='source .venv/bin/activate'
 export EDITOR=nvim
 
@@ -70,7 +69,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     }
 
 # WSL Ubuntu Functions 
-elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+elif [[ -n "$WSL_DISTRO_NAME" ]]; then
   alias cw='cd /mnt/c/users/jackw'
   alias desktop='cd /mnt/c/users/jackw/Desktop'
   alias downloads='cd /mnt/c/users/jackw/Downloads'
