@@ -39,7 +39,7 @@ version, and a `streamlink/config` (`player=mpv`) since this machine has
 (a `remote_clipboard` setup, the `neo-tree` extra, and Lazy's actual
 installed-plugin lockfile), so a stale repo copy would silently overwrite
 working machine state. `omarchy/` supplies its own `obsidian.lua` instead
-(see below); the WSL machine does the same via `wsl/`.
+(see below); the WSL machine does the same via `wsl/` and the NAS via `nas/`.
 
 ## Machine-specific: WSL (Beelink)
 
@@ -71,4 +71,42 @@ plaintext password.
 WSL machine reaches directly at `/mnt/j/obsidian-vault` (see the WSL section
 above).
 
+## Machine-specific: UGREEN NAS (headless)
 
+The UGREEN NAS (DXP4800 Plus, UGOS = Debian 12 bookworm) is only reached over
+`ssh nas`. Stow `nvim/`, `lazygit/`, and `nas/` there. **Never stow `nas/` on
+the Omarchy or WSL machines** — its `options.lua` would shadow Omarchy's
+`remote_clipboard` setup.
+
+`nas/` supplies the `nvim/` files that are deliberately untracked per machine:
+
+- `lua/config/options.lua` — copy-only OSC 52 clipboard (yanks land on the
+  laptop's clipboard; `p` pastes Neovim's own last yank, so use terminal paste
+  for laptop text — querying the terminal can block for seconds), turns
+  `clipboard=unnamedplus` back on (LazyVim clears it over SSH), sets
+  `autoformat = false` to match Omarchy, and disables the unused
+  Python/Node/Perl/Ruby providers.
+- `lua/config/autocmds.lua` — a copy of `omarchy/`'s CRLF strip. Keep the two
+  in sync.
+- `lua/plugins/obsidian.lua` — points `obsidian.nvim` at
+  `/home/senchou/obsidian-vault`, the NAS-local path of the same vault Omarchy
+  sees at `/mnt/nas/obsidian-vault`.
+
+Because two packages share `~/.config/nvim`, stow unfolds it into a real
+directory of per-file links. After adding a file to either package:
+`git pull`, then `stow -R nvim nas`. The NAS clone is HTTPS and pull-only —
+edit and push from the laptop.
+
+Not tracked here (rebuild by hand on a fresh NAS):
+
+- nvim and lazygit are upstream release tarballs in `~/.local/opt/`, linked
+  into `~/.local/bin` — Debian's packages are too old, and `$HOME` survives
+  UGOS firmware updates.
+- `~/.local/bin/fd -> /usr/bin/fdfind` and
+  `~/.local/bin/tree-sitter -> ~/.local/share/nvim/mason/bin/tree-sitter`
+  (mason's copy isn't on PATH until mason loads).
+- `ssh nas` starts a **non-login** bash, so `~/.profile` is never read —
+  `~/.local/bin` is added to PATH in `~/.bashrc`.
+- apt tools, which a firmware update may remove:
+  `sudo apt install git stow build-essential unzip ripgrep fd-find trash-cli fzf`.
+  Never `apt upgrade` on UGOS — UGREEN manages system packages via firmware.
