@@ -1,0 +1,26 @@
+#!/bin/bash
+# Update the Tailscale-sidecar stacks on the NAS.
+# The UGOS update button recreates containers one at a time, which strands each
+# app on a dead sidecar network. So: pull everything, then down/up whole stacks.
+# AdGuard goes last: it's the house DNS, and the pulls need DNS.
+# Main Immich stack is deliberately excluded (read release notes, update by hand).
+set -euo pipefail
+
+ROOT=/volume1/docker
+STACKS=(vaultwarden linkding immich-share adguard)
+
+for s in "${STACKS[@]}"; do
+  echo "==> pulling $s"
+  (cd "$ROOT/$s" && sudo docker compose pull)
+done
+
+for s in "${STACKS[@]}"; do
+  echo "==> recreating $s"
+  (cd "$ROOT/$s" && sudo docker compose down && sudo docker compose up -d)
+done
+
+echo "==> removing old images"
+sudo docker image prune -f
+
+echo
+sudo docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}'
