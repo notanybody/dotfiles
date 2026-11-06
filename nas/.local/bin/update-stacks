@@ -24,3 +24,16 @@ sudo docker image prune -f
 
 echo
 sudo docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}'
+
+# The NAS's own tailnet node (host network, made in the UGOS UI) isn't a compose
+# stack, so it isn't recreated above and stays on the old image. Diun won't
+# re-alert for it, so warn here. Update it via the UGOS UI from the LAN only:
+# it's the remote way in, and if it doesn't come back you're locked out.
+NODE=tailscale_tailscale-1
+node_img=$(sudo docker inspect "$NODE" --format '{{.Image}}' 2>/dev/null || true)
+latest_img=$(sudo docker image inspect tailscale/tailscale:latest --format '{{.Id}}' 2>/dev/null || true)
+if [[ -n $node_img && -n $latest_img && $node_img != "$latest_img" ]]; then
+  echo
+  echo "!!  $NODE is on an older tailscale image than the sidecars."
+  echo "    Update it in the UGOS Docker UI, from the LAN, not over Tailscale."
+fi
