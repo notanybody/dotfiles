@@ -34,3 +34,6 @@ o.bind("SUPER + SHIFT + L", "Linkding", "omarchy-launch-or-focus-webapp chrome-l
 
 hl.unbind("SUPER + SHIFT + B")
 o.bind("SUPER + SHIFT + B", "Actual Budget", "omarchy-launch-or-focus-webapp chrome-actual https://actual.tail90599c.ts.net")
+
+hl.unbind("SUPER + SHIFT + G")
+o.bind("SUPER + SHIFT + G", "Ghostfolio", "omarchy-launch-or-focus-webapp chrome-ghostfolio https://ghostfolio.tail90599c.ts.net")
