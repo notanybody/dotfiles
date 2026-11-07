@@ -7,7 +7,7 @@
 set -euo pipefail
 
 ROOT=/volume1/docker
-STACKS=(vaultwarden linkding immich-share immich-ts diun actual adguard)
+STACKS=(vaultwarden linkding immich-share immich-ts diun actual ghostfolio adguard)
 
 for s in "${STACKS[@]}"; do
   echo "==> pulling $s"
