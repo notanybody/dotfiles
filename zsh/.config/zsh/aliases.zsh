@@ -66,6 +66,10 @@ elif [[ -n "$WSL_DISTRO_NAME" ]]; then
   export PATH=$PATH:/snap/bin
   export PATH=$PATH:~/scripts/
 
+# UGREEN NAS (bat = ~/.local/bin/bat -> batcat)
+elif [[ -d /volume1 ]]; then
+  alias cat='bat'
+
 # Linux (Omarchy)
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   NAS_ROOT="/mnt/nas"
