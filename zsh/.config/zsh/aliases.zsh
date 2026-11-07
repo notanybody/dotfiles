@@ -10,10 +10,18 @@ alias lt='eza --tree --icons=auto'
 # Alias Config + GitHub Push
 alias za='nvim ~/.config/zsh/aliases.zsh'
 alias zar='source ~/.config/zsh/aliases.zsh'
-alias gp='git add . && git commit && git pull --rebase && git push'
-alias gl='git pull --rebase'
+alias gl='git pull --rebase --autostash'
 alias sv='source .venv/bin/activate'
 export EDITOR=nvim
+
+# Stage + commit (skipped if nothing staged), rebase on remote, push
+unalias gp 2>/dev/null
+gp() {
+  git add . &&
+  { git diff --cached --quiet || git commit; } &&
+  git pull --rebase &&
+  git push
+}
 
 # FZF Tokyo Night Storm Theme
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
