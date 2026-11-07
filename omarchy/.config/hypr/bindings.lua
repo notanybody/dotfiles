@@ -31,3 +31,6 @@
 hl.unbind("SUPER + SHIFT + D")
 o.bind("SUPER + SHIFT + D", "Discord" , "omarchy-launch-or-focus-webapp chrome-discord https://discord.com/app")
 o.bind("SUPER + SHIFT + L", "Linkding", "omarchy-launch-or-focus-webapp chrome-linkding https://linkding.tail90599c.ts.net")
+
+hl.unbind("SUPER + SHIFT + B")
+o.bind("SUPER + SHIFT + B", "Actual Budget", "omarchy-launch-or-focus-webapp chrome-actual https://actual.tail90599c.ts.net")
