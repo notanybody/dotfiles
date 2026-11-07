@@ -1,2 +1,4 @@
 .config/zsh/plugins/
 credentials
+.DS_Store
+lazy-lock.json
