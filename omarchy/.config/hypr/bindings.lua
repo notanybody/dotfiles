@@ -37,3 +37,6 @@ o.bind("SUPER + SHIFT + B", "Actual Budget", "omarchy-launch-or-focus-webapp chr
 
 hl.unbind("SUPER + SHIFT + G")
 o.bind("SUPER + SHIFT + G", "Ghostfolio", "omarchy-launch-or-focus-webapp chrome-ghostfolio https://ghostfolio.tail90599c.ts.net")
+
+hl.unbind("SUPER + SHIFT + P")
+o.bind("SUPER + SHIFT + P", "Proton Mail", "omarchy-launch-or-focus-webapp chrome-mail https://mail.proton.me")
