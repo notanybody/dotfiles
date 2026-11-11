@@ -3,11 +3,20 @@
 # The UGOS update button recreates containers one at a time, which strands each
 # app on a dead sidecar network. So: pull everything, then down/up whole stacks.
 # AdGuard goes last: it's the house DNS, and the pulls need DNS.
-# Main Immich stack is deliberately excluded (read release notes, update by hand).
+# Main Immich stack included: its DB is dumped first, and Postgres is pinned in compose.yml.
+# Before a major Immich version (v4, v5...), read the release notes before running this.
 set -euo pipefail
 
 ROOT=/volume1/docker
-STACKS=(vaultwarden linkding immich-share immich-ts diun actual ghostfolio stash adguard)
+STACKS=(vaultwarden linkding immich immich-share immich-ts diun actual ghostfolio stash adguard)
+
+# Dump Immich's database before pulling. A bad release can migrate the DB
+# in a way the old version can't read, and this is the way back. Keep the last 5.
+DUMPS=$ROOT/immich/pre-update-dumps
+echo "==> dumping immich database"
+sudo docker exec immich_postgres pg_dumpall --clean --if-exists -U postgres \
+  | gzip > "$DUMPS/immich-$(date +%F-%H%M).sql.gz"
+ls -1t "$DUMPS"/immich-*.sql.gz | tail -n +6 | xargs -r rm --
 
 for s in "${STACKS[@]}"; do
   echo "==> pulling $s"
