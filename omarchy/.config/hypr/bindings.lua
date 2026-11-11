@@ -40,3 +40,8 @@ o.bind("SUPER + SHIFT + G", "Ghostfolio", "omarchy-launch-or-focus-webapp chrome
 
 hl.unbind("SUPER + SHIFT + P")
 o.bind("SUPER + SHIFT + P", "Proton Mail", "omarchy-launch-or-focus-webapp chrome-mail https://mail.proton.me")
+
+-- Strata file manager (replaces Nautilus). Full path: ~/.local/bin may not be on Hyprland's PATH.
+local strata = os.getenv("HOME") .. "/.local/bin/strata"
+o.rebind("SUPER + SHIFT + F", "File manager", { launch = strata })
+o.rebind("SUPER + ALT + SHIFT + F", "File manager (cwd)", "uwsm-app -- " .. strata .. ' "$(omarchy-cmd-terminal-cwd)"')
