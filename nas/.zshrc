@@ -5,6 +5,9 @@
 # PATH first, so starship/zoxide/fzf/eza in ~/.local/bin are found
 export PATH="$HOME/.local/bin:$PATH"
 
+# sudo's secure_path doesn't include ~/.local/bin, so give sudoedit nvim's full path
+export SUDO_EDITOR="$HOME/.local/bin/nvim"
+
 # History
 HISTSIZE=10000
 SAVEHIST=10000
