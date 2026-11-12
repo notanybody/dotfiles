@@ -8,7 +8,7 @@
 set -euo pipefail
 
 ROOT=/volume1/docker
-STACKS=(vaultwarden linkding immich immich-share immich-ts diun actual ghostfolio stash adguard)
+STACKS=(vaultwarden linkding immich immich-share immich-ts diun actual ghostfolio stash opengym adguard)
 
 # Dump Immich's database before pulling. A bad release can migrate the DB
 # in a way the old version can't read, and this is the way back. Keep the last 5.
