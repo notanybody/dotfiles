@@ -97,9 +97,11 @@ uses mpv), Steam (`sudo pacman -S steam`; needs multilib, which is already
 on).
 
 ## 3. Dotfiles & config
-- [ ] `mkdir ~/Projects`, then clone `dotfiles`, `scripts`, and
-      `claude-memory` there. Use SSH remotes once the key is added
-      (Section 4). HTTPS works for the first clone
+- [ ] `gh auth login` (GitHub.com, **HTTPS**, log in with a web browser).
+      `gh` comes with Omarchy, and Omarchy's git config already uses it as
+      the credential helper, so no SSH key is needed for GitHub
+- [ ] `mkdir ~/Projects`, then clone `dotfiles`, `scripts`, `claude-memory`,
+      and `photo-badge` there over HTTPS (`gh repo clone notanybody/<repo>`)
 - [ ] `git pull`, then stow from `~/Projects/dotfiles`:
       `omarchy nvim starship lazygit eza yazi scripts`
       **Skip** the shared `tmux btop zsh git` packages (`omarchy/` overrides
@@ -125,10 +127,11 @@ laptop; redo them here, or move them into `omarchy/` first):
       2880x1920 panel. **Set it for the desktop monitor instead** (`auto`, or
       1/1.5 depending on the panel)
 
-## 4. SSH, Git, Claude
+## 4. SSH (NAS only) & Claude
+GitHub stays on HTTPS through `gh` (Section 3). The SSH key below is only
+for the NAS.
 - [ ] `ssh-keygen -t ed25519` (a new key per machine; don't copy the
       laptop's)
-- [ ] Add the public key to GitHub, then `gh auth login`
 - [ ] Recreate `~/.ssh/config` (not tracked):
       ```
       Host nas
@@ -136,7 +139,6 @@ laptop; redo them here, or move them into `omarchy/` first):
         User senchou
       ```
       then `ssh-copy-id nas` and check that `ssh nas` lands in zsh
-- [ ] Switch the repo remotes to SSH if you cloned over HTTPS
 - [ ] **Claude memory:** before the first `claude` run,
       `mkdir -p ~/.claude/projects/-home-senchou` then
       `ln -s ~/Projects/claude-memory ~/.claude/projects/-home-senchou/memory`
@@ -191,8 +193,7 @@ laptop; redo them here, or move them into `omarchy/` first):
 - [ ] Strava dashboard, media downloader, ghost animation: pull from
       `scripts`/dotfiles and re-check the NAS paths. Recreate any `.venv`
       with `uv venv` / `sv`
-- [ ] photo-badge: `gh repo clone notanybody/photo-badge` into
-      `~/Projects`, then `pipx install platformio`. The first `pio run` rebuilds
+- [ ] photo-badge (cloned in Section 3): `pipx install platformio`. The first `pio run` rebuilds
       `.pio/` (~98MB of toolchains, gitignored). Flashing goes through
       `/dev/ttyACM0`, so add yourself to `uucp` if it isn't already set
       (the laptop has it)
