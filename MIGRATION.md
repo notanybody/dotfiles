@@ -22,9 +22,8 @@ limine/snapper snapshots, or chroot from a live USB), same as the laptop.
 ## 0. Before the weekend (on the laptop)
 - [x] Fixed `/etc/pacman.conf`: removed the stray `EOF` line that the Cider
       repo heredoc left behind (2026-11-13)
-- [ ] `~/Projects/photo-badge` (PlatformIO project) is **not a git repo** and
-      exists only on this laptop. Either `git init` it and push to GitHub, or
-      copy it to the NAS
+- [x] `~/Projects/photo-badge` is now in git and pushed to
+      github.com/notanybody/photo-badge (**private**, 2026-11-13)
 - [x] Secrets saved and restore-tested (2026-11-13). None of these are in
       git:
   - `~/.age/`: age identity used for the encrypted NAS backups (Ghostfolio,
@@ -192,8 +191,11 @@ laptop; redo them here, or move them into `omarchy/` first):
 - [ ] Strava dashboard, media downloader, ghost animation: pull from
       `scripts`/dotfiles and re-check the NAS paths. Recreate any `.venv`
       with `uv venv` / `sv`
-- [ ] photo-badge: restore from wherever Section 0 put it, then
-      `pipx install platformio`
+- [ ] photo-badge: `gh repo clone notanybody/photo-badge` into
+      `~/Projects`, then `pipx install platformio`. The first `pio run` rebuilds
+      `.pio/` (~98MB of toolchains, gitignored). Flashing goes through
+      `/dev/ttyACM0`, so add yourself to `uucp` if it isn't already set
+      (the laptop has it)
 - [ ] `stream`: check that streamlink plays through mpv (`omarchy/` stows
       `streamlink/config`)
 
