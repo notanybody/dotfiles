@@ -30,6 +30,8 @@
 
 hl.unbind("SUPER + SHIFT + D")
 o.bind("SUPER + SHIFT + D", "Discord" , "omarchy-launch-or-focus-webapp chrome-discord https://discord.com/app")
+
+hl.unbind("SUPER + SHIFT + L")
 o.bind("SUPER + SHIFT + L", "Linkding", "omarchy-launch-or-focus-webapp chrome-linkding https://linkding.tail90599c.ts.net")
 
 hl.unbind("SUPER + SHIFT + B")
