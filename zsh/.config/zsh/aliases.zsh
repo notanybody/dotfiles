@@ -119,4 +119,9 @@ if [[ -n "$NAS_ROOT" ]]; then
       fi
     done
   }
+
+  # Process incoming OF4LM/FAP4LM downloads into the onlyfans library
+  function organize-incoming() {
+    python3 ~/scripts/organize/nas/process_incoming.py "$NAS_ROOT/division/incoming" "$NAS_ROOT/division/onlyfans" "$@"
+  }
 fi
