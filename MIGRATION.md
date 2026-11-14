@@ -114,6 +114,9 @@ on).
 - [ ] `chsh -s /usr/bin/zsh`, then log out and back in
 - [ ] Re-link the `stream` script: `ln -s ~/Projects/scripts/stream
       ~/.local/bin/stream`
+- [ ] `sudo pacman -S python-tqdm`: the NAS scripts' progress bar
+      (`pacman_bar.py`) needs it, otherwise `organize-incoming` fails with
+      `No module named 'tqdm'`. Use pacman, not pip (Arch blocks system pip)
 
 **Hypr/terminal tweaks that are NOT in dotfiles** (made by hand on the
 laptop; redo them here, or move them into `omarchy/` first):

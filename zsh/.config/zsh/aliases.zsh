@@ -51,6 +51,7 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
 # Mac
 if [[ "$OSTYPE" == "darwin"* ]]; then
   NAS_ROOT="/Volumes/personal_folder"
+  SCRIPTS=~/scripts
   alias cat='bat'
 
 # WSL Ubuntu
@@ -62,9 +63,10 @@ elif [[ -n "$WSL_DISTRO_NAME" ]]; then
   alias sdrive='cd /mnt/s'
   alias wincommands='nvim /mnt/c/users/jackw/OneDrive/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1'
   alias psconfig='nvim /mnt/c/Users/jackw/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json'
+  SCRIPTS=~/scripts
   alias cat='batcat'
   export PATH=$PATH:/snap/bin
-  export PATH=$PATH:~/scripts/
+  export PATH=$PATH:$SCRIPTS
 
 # UGREEN NAS (bat = ~/.local/bin/bat -> batcat)
 elif [[ -d /volume1 ]]; then
@@ -73,6 +75,7 @@ elif [[ -d /volume1 ]]; then
 # Linux (Omarchy)
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   NAS_ROOT="/mnt/nas"
+  SCRIPTS=~/Projects/scripts
   alias cat='bat'
 fi
 
@@ -122,6 +125,7 @@ if [[ -n "$NAS_ROOT" ]]; then
 
   # Process incoming OF4LM/FAP4LM downloads into the onlyfans library
   function organize-incoming() {
-    python3 ~/scripts/organize/nas/process_incoming.py "$NAS_ROOT/division/incoming" "$NAS_ROOT/division/onlyfans" "$@"
+    python3 "$SCRIPTS/organize/nas/process_incoming.py" "$NAS_ROOT/division/incoming" "$NAS_ROOT/division/onlyfans" "$@"
   }
+
 fi
