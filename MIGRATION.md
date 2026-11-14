@@ -90,9 +90,11 @@ Notes:
       → Appearance, turn on Follow Omarchy
 - [ ] `uv tool install b2` (B2 CLI for the off-site bucket)
 - [ ] `pipx install platformio` (only when photo-badge work resumes)
+- [ ] mGBA for the Pokémon nuzlockes: `sudo pacman -S mgba-qt` (it's in
+      `extra`, no AUR needed). Restoring saves is in Section 8
 
 **Optional, from the old Windows installers list** (not on the laptop; add
-only if you miss them): Chatterino, LocalSend, mGBA, VLC (streamlink already
+only if you miss them): Chatterino, LocalSend, VLC (streamlink already
 uses mpv), Steam (`sudo pacman -S steam`; needs multilib, which is already
 on).
 
@@ -206,6 +208,10 @@ for the NAS.
       (the laptop has it)
 - [ ] `stream`: check that streamlink plays through mpv (`omarchy/` stows
       `streamlink/config`)
+- [ ] mGBA saves: the source of truth is `/mnt/nas/senchou/games/gba/`.
+      Syncing between machines is a separate project (Syncthing). Hook the
+      desktop into it, and **don't play straight off the NAS mount**. Back up
+      a run's `.sav` before the first in-game save on the desktop
 
 ## 9. Hardware checks
 - [ ] `memtest_vulkan` (Linux build): VRAM/unified memory
