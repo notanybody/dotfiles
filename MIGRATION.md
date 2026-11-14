@@ -90,8 +90,11 @@ Notes:
       → Appearance, turn on Follow Omarchy
 - [ ] `uv tool install b2` (B2 CLI for the off-site bucket)
 - [ ] `pipx install platformio` (only when photo-badge work resumes)
-- [ ] mGBA for the Pokémon nuzlockes: `sudo pacman -S mgba-qt` (it's in
-      `extra`, no AUR needed). Restoring saves is in Section 8
+- [ ] mGBA for the Pokémon nuzlockes: `sudo pacman -S mgba-qt qt5-wayland`
+      (both in `extra`, no AUR needed). mgba-qt is built on Qt5, and Omarchy
+      doesn't ship Qt5's Wayland plugin. Without `qt5-wayland` it warns
+      `Could not find the Qt platform plugin "wayland"` and falls back to
+      XWayland (blurry UI). Restoring saves is in Section 8
 
 **Optional, from the old Windows installers list** (not on the laptop; add
 only if you miss them): Chatterino, LocalSend, VLC (streamlink already
