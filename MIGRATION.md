@@ -153,9 +153,9 @@ for the NAS.
       for this node (it's a server for the AI stack)
 - [ ] NAS mount: create `/etc/samba/credentials-nas` by hand
       (`username=`/`password=`, `chmod 600`), add the CIFS line from the
-      README to `/etc/fstab`, `sudo mkdir /mnt/nas`, then
-      `sudo systemctl daemon-reload`. Check with `ls /mnt/nas/obsidian-vault`
-- [ ] Obsidian app: open the vault at `/mnt/nas/obsidian-vault`
+      README to `/etc/fstab`, `sudo mkdir -p /mnt/nas/senchou /mnt/nas/stash`, then
+      `sudo systemctl daemon-reload`. Check with `ls /mnt/nas/senchou/obsidian-vault`
+- [ ] Obsidian app: open the vault at `/mnt/nas/senchou/obsidian-vault`
       (`obsidian.nvim` already points there via `omarchy/`)
 - [ ] Restore `~/.age/` from Vaultwarden/USB (`chmod 700`), and set up `b2`
       auth if you need it on this box

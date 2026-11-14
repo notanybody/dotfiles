@@ -53,11 +53,13 @@ machine-specific path.
 ### NAS mount (Omarchy)
 
 Obsidian vault and other personal files live on a UGREEN NAS
-(`192.168.68.55`, share `personal_folder`), mounted at `/mnt/nas` via
+(`192.168.68.55`), shares `personal_folder` at `/mnt/nas/senchou` and `stash`
+at `/mnt/nas/stash`, via
 `/etc/fstab`:
 
 ```
-//192.168.68.55/personal_folder /mnt/nas cifs credentials=/etc/samba/credentials-nas,uid=1000,gid=1000,iocharset=utf8,vers=3.0,noauto,x-systemd.automount,x-systemd.idle-timeout=60,_netdev 0 0
+//192.168.68.55/personal_folder /mnt/nas/senchou cifs credentials=/etc/samba/credentials-nas,uid=1000,gid=1000,iocharset=utf8,vers=3.0,noauto,x-systemd.automount,x-systemd.idle-timeout=60,_netdev 0 0
+//192.168.68.55/stash /mnt/nas/stash cifs credentials=/etc/samba/credentials-nas,uid=1000,gid=1000,iocharset=utf8,vers=3.0,noauto,x-systemd.automount,x-systemd.idle-timeout=60,_netdev 0 0
 ```
 
 `noauto,x-systemd.automount` mounts on first access instead of blocking boot
@@ -67,7 +69,7 @@ be recreated by hand on any new machine — it's outside `$HOME` and holds a
 plaintext password.
 
 `omarchy/.config/nvim/lua/plugins/obsidian.lua` points `obsidian.nvim` at
-`/mnt/nas/obsidian-vault` — this is a NAS-side mirror of the same vault the
+`/mnt/nas/senchou/obsidian-vault` — this is a NAS-side mirror of the same vault the
 WSL machine reaches directly at `/mnt/j/obsidian-vault` (see the WSL section
 above).
 
@@ -90,7 +92,7 @@ the Omarchy or WSL machines** — its `options.lua` would shadow Omarchy's
   in sync.
 - `lua/plugins/obsidian.lua` — points `obsidian.nvim` at
   `/home/senchou/obsidian-vault`, the NAS-local path of the same vault Omarchy
-  sees at `/mnt/nas/obsidian-vault`.
+  sees at `/mnt/nas/senchou/obsidian-vault`.
 
 Because two packages share `~/.config/nvim`, stow unfolds it into a real
 directory of per-file links. After adding a file to either package:

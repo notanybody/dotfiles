@@ -74,7 +74,7 @@ elif [[ -d /volume1 ]]; then
 
 # Linux (Omarchy)
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  NAS_ROOT="/mnt/nas"
+  NAS_ROOT="/mnt/nas/senchou"
   SCRIPTS=~/Projects/scripts
   alias cat='bat'
 fi
