@@ -152,9 +152,13 @@ for the NAS.
       approve the node in the admin console. Consider turning off key expiry
       for this node (it's a server for the AI stack)
 - [ ] NAS mount: create `/etc/samba/credentials-nas` by hand
-      (`username=`/`password=`, `chmod 600`), add the CIFS line from the
-      README to `/etc/fstab`, `sudo mkdir -p /mnt/nas/senchou /mnt/nas/stash`, then
-      `sudo systemctl daemon-reload`. Check with `ls /mnt/nas/senchou/obsidian-vault`
+      (`username=`/`password=`, `chmod 600`), add **both** CIFS lines from the
+      README (`personal_folder` + `stash`) to `/etc/fstab`,
+      `sudo mkdir -p /mnt/nas/senchou /mnt/nas/stash`, then
+      `sudo systemctl daemon-reload && sudo systemctl restart remote-fs.target`.
+      Check with `ls /mnt/nas/senchou/obsidian-vault /mnt/nas/stash`
+- [ ] File-picker bookmarks (not stowed): append to `~/.config/gtk-3.0/bookmarks`
+      `file:///mnt/nas/senchou nas` and `file:///mnt/nas/stash stash`
 - [ ] Obsidian app: open the vault at `/mnt/nas/senchou/obsidian-vault`
       (`obsidian.nvim` already points there via `omarchy/`)
 - [ ] Restore `~/.age/` from Vaultwarden/USB (`chmod 700`), and set up `b2`
