@@ -41,6 +41,34 @@ installed-plugin lockfile), so a stale repo copy would silently overwrite
 working machine state. `omarchy/` supplies its own `obsidian.lua` instead
 (see below); the WSL machine does the same via `wsl/` and the NAS via `nas/`.
 
+## Machine-specific: Framework Desktop (Omarchy)
+
+The Framework Desktop runs Omarchy like the laptop, so it stows `omarchy/`
+plus the shared packages as normal, and adds `desktop/` on top:
+
+`stow omarchy desktop nvim starship lazygit eza yazi scripts`
+
+`desktop/` holds only `.config/hypr/monitors.lua`: two Gigabyte monitors
+through an iDock B10 KVM (M27UA 4K@160 over DisplayPort on the left at scale
+1.5, M27Q 1440p@144 over HDMI on the right at scale 1). Both work out to
+2560x1440 logical, so the shared edge lines up with no cursor jump. Monitors
+are matched by `desc:` (from `hyprctl monitors all`), not connector, because
+connector names can change through the KVM.
+
+- **Never stow `desktop/` on the laptop.** Stow refuses anyway, because
+  the laptop's `monitors.lua` is a real file.
+- On a fresh install, move Omarchy's default aside first, or stow reports
+  a conflict:
+  `mv ~/.config/hypr/monitors.lua ~/.config/hypr/monitors.lua.omarchy`
+- Edit monitor settings in the repo file, never through Omarchy's
+  monitor-scaling menu, which replaces the link with a plain file.
+  `omarchy-refresh-hyprland` copies Omarchy's defaults *through* the link
+  into the repo; if `git status` shows `monitors.lua` changed after an
+  Omarchy update, `git restore` it.
+- Fonts and the cursor theme stay out of `desktop/`: `omarchy-font-set`
+  rewrites terminal configs with `sed -i`, which would break stow links.
+  See `MIGRATION.md`.
+
 ## Machine-specific: WSL (Beelink)
 
 Jack's Windows/WSL Ubuntu Beelink is still in daily use (travels alongside
