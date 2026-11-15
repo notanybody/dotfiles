@@ -90,11 +90,11 @@ Notes:
       → Appearance, turn on Follow Omarchy
 - [ ] `uv tool install b2` (B2 CLI for the off-site bucket)
 - [ ] `pipx install platformio` (only when photo-badge work resumes)
-- [ ] mGBA for the Pokémon nuzlockes: `sudo pacman -S mgba-qt qt5-wayland`
-      (both in `extra`, no AUR needed). mgba-qt is built on Qt5, and Omarchy
+- [ ] mGBA for the Pokémon nuzlockes: `sudo pacman -S mgba-qt qt5-wayland syncthing`
+      (all in `extra`, no AUR needed). mgba-qt is built on Qt5, and Omarchy
       doesn't ship Qt5's Wayland plugin. Without `qt5-wayland` it warns
       `Could not find the Qt platform plugin "wayland"` and falls back to
-      XWayland (blurry UI). Restoring saves is in Section 8
+      XWayland (blurry UI). Syncthing and save setup are in Section 8
 
 **Optional, from the old Windows installers list** (not on the laptop; add
 only if you miss them): Chatterino, LocalSend, VLC (streamlink already
@@ -211,10 +211,32 @@ for the NAS.
       (the laptop has it)
 - [ ] `stream`: check that streamlink plays through mpv (`omarchy/` stows
       `streamlink/config`)
-- [ ] mGBA saves: the source of truth is `/mnt/nas/senchou/games/gba/`.
-      Syncing between machines is a separate project (Syncthing). Hook the
-      desktop into it, and **don't play straight off the NAS mount**. Back up
-      a run's `.sav` before the first in-game save on the desktop
+- [ ] mGBA saves via Syncthing. The NAS is the hub
+      (`https://sync.tail90599c.ts.net`, login in Vaultwarden "Syncthing – NAS"),
+      and each machine keeps a local copy in `~/Games/gba`. **Never play off
+      `/mnt/nas`.**
+  - [ ] `systemctl --user enable --now syncthing`, then open
+        http://127.0.0.1:8384
+  - [ ] Settings → Connections: Listen Addresses `tcp://0.0.0.0:22000`,
+        untick NAT traversal, Global Discovery, Local Discovery and Relaying
+        (tailnet-only, same as the laptop)
+  - [ ] Pair: NAS UI → Actions → Show ID. Desktop UI → Add Remote Device,
+        name `nas`, Advanced → Addresses `tcp://sync.tail90599c.ts.net:22000`.
+        Accept the prompt on the NAS as `desktop` (address `dynamic`)
+  - [ ] NAS UI → `gba` folder → Edit → Sharing → tick `desktop`. On the
+        desktop, accept it with Folder Path **`~/Games/gba`** (not the
+        default `~/gba`). Wait for Up to Date, and check that
+        `eza -T ~/Games/gba` shows `pokemon/` (no `_archive`, which is
+        NAS-only)
+  - [ ] **Before the first launch, close mGBA on the laptop**, and play on
+        only one machine at a time. Quit with File → Exit, never Ctrl+C
+  - [ ] mGBA: Tools → Settings → Audio/Video → Display driver →
+        **Software (Qt)**, then restart. The OpenGL driver spams
+        `Attempted flush to non-raster surface` on Qt5/Wayland
+  - [ ] Test: open a run with
+        `mgba-qt ~/Games/gba/pokemon/<run>/<run>.gba`, check that Continue
+        shows the latest progress, save, quit, and confirm the laptop
+        receives the new `.sav`
 
 ## 9. Hardware checks
 - [ ] `memtest_vulkan` (Linux build): VRAM/unified memory
