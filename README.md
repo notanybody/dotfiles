@@ -19,7 +19,7 @@ Personal dotfiles & scripts for my terminal setup.
 ## Machine-specific: Omarchy
 
 The `omarchy/` package overrides files that collide with Omarchy's own
-defaults (`.zshrc`, `zsh/aliases.zsh`, `btop.conf`) or that tmux would load
+defaults (`.zshrc`, `btop.conf`) or that tmux would load
 ahead of the shared package's `~/.tmux.conf` (Omarchy reads
 `~/.config/tmux/tmux.conf`, and tmux always prefers `~/.tmux.conf` when both
 exist). It also adds `zsh/omarchy.zsh`, a zsh port of Omarchy's default bash
@@ -31,8 +31,10 @@ version, and a `streamlink/config` (`player=mpv`) since this machine has
 `mpv` rather than `vlc`, which streamlink otherwise looks for by default.
 
 **On an Omarchy machine, stow `omarchy/` and skip the shared `tmux/`,
-`btop/`, `zsh/`, and `git/` packages** — stowing them after (or instead of)
-`omarchy/` will shadow these overrides. `nvim/`, `starship/`, `lazygit/`,
+`btop/`, and `git/` packages** — stowing them after (or instead of)
+`omarchy/` will shadow these overrides. `zsh/` is the exception: its
+`aliases.zsh` is shared by every machine (`omarchy/.zshrc` sources it), so
+stow it **without** its `.zshrc`: `stow --ignore='\.zshrc' zsh`. `nvim/`, `starship/`, `lazygit/`,
 `eza/`, and `yazi/` are still shared as normal. `nvim/` deliberately does
 **not** track `lua/plugins/obsidian.lua`, `lua/config/options.lua`,
 `lazyvim.json`, or `lazy-lock.json` — Omarchy injects/manages these itself
@@ -46,7 +48,8 @@ working machine state. `omarchy/` supplies its own `obsidian.lua` instead
 The Framework Desktop runs Omarchy like the laptop, so it stows `omarchy/`
 plus the shared packages as normal, and adds `desktop/` on top:
 
-`stow omarchy desktop nvim starship lazygit eza yazi scripts`
+`stow omarchy desktop nvim starship lazygit eza yazi scripts`, then
+`stow --ignore='\.zshrc' zsh` (see the Omarchy section above)
 
 `desktop/` holds only `.config/hypr/monitors.lua`: two Gigabyte monitors
 through an iDock B10 KVM (M27UA 4K@160 over DisplayPort on the left at scale

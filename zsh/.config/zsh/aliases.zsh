@@ -23,6 +23,13 @@ gp() {
   git push
 }
 
+# mdv: rendered Markdown (glow) inside bat's frame (header, grid, line numbers, pager)
+# Line numbers count rendered lines, not source lines. Needs glow + bat.
+mdv() {
+  glow -s tokyo-night -w $(( COLUMNS - 10 )) "$1" \
+    | bat --style=header-filename,grid,numbers --file-name "$1"
+}
+
 # FZF Tokyo Night Storm Theme
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --highlight-line \
@@ -76,7 +83,19 @@ elif [[ -d /volume1 ]]; then
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   NAS_ROOT="/mnt/nas/senchou"
   SCRIPTS=~/Projects/scripts
-  alias cat='bat'
+
+  # cat: bat for everything, but one .md file shown in a terminal renders via mdv.
+  # Pipes/redirects (-t 1 false) stay raw. Raw Markdown on screen: bat file.md
+  # `function cat {` (not `cat() {`): zsh parses this whole if-block before
+  # running it, so an old `cat` alias would otherwise expand on `zar` re-source.
+  unalias cat 2>/dev/null
+  function cat {
+    if [[ $# -eq 1 && "$1" == *.md && -f "$1" && -t 1 ]] && (( $+commands[glow] )); then
+      mdv "$1"
+    else
+      bat "$@"
+    fi
+  }
 fi
 
 # --- NAS Functions (only where the NAS is mounted) ---

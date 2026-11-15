@@ -159,7 +159,12 @@ LocalSend, VLC (streamlink already uses mpv).
       `mv ~/.config/hypr/monitors.lua ~/.config/hypr/monitors.lua.omarchy`
 - [ ] Stow from `~/Projects/dotfiles`:
       `stow omarchy desktop nvim starship lazygit eza yazi scripts`
-  - **Skip** `tmux btop zsh git` (`omarchy/` overrides them)
+  - **Then** `stow --ignore='\.zshrc' zsh`. `omarchy/.zshrc` sources
+    `~/.config/zsh/aliases.zsh`, which lives **only** in the shared `zsh/`
+    package (`gp`, `gl`, `za`, `mdv`, `$SCRIPTS`, the NAS functions...).
+    `--ignore` skips `zsh/.zshrc`, which would conflict with `omarchy/`'s.
+    Check with `ls -la ~/.config/zsh/` (both files should be links)
+  - **Skip** `tmux btop git` (`omarchy/` overrides them)
   - **Skip** `ghostty` (the pre-Omarchy hardcoded Tokyo Night Storm config;
     it would override Omarchy's theme switching)
   - **Skip** `xkb` (the desktop keyboard is standard US; the JIS remap is
