@@ -38,7 +38,7 @@ limine/snapper snapshots, or chroot from a live USB), same as the laptop.
   - `~/.config/b2/`: B2 CLI account info (or just re-authorize `b2` with the
     key from Vaultwarden)
   - NAS SMB password for `/etc/samba/credentials-nas`
-- [ ] Build the **`desktop/` stow package** (same pattern as `wsl/`/`nas/`):
+- [x] Built the **`desktop/` stow package** (2026-11-15; same pattern as `wsl/`/`nas/`):
       `desktop/.config/hypr/monitors.lua` with the layout from Section 4,
       `desc:` placeholders included. **Only `monitors.lua`.** Fonts and the
       cursor line can't be stowed safely: `omarchy-font-set` runs
@@ -98,7 +98,7 @@ sudo pacman -S --needed stow zsh yazi git-delta lazydocker \
   capitaine-cursors ttf-firacode-nerd \
   obs-studio kdenlive xournalpp \
   gst-libav gst-plugins-good gst-plugins-bad gst-plugins-ugly \
-  mgba-qt qt5-wayland syncthing steam \
+  mgba-qt qt5-wayland syncthing steam glow \
   dcraw bind
 ```
 
@@ -112,6 +112,8 @@ Notes:
   XWayland (blurry UI)
 - `steam` needs multilib, which Omarchy already enables. When it asks
   which Vulkan driver to use, pick `vulkan-radeon` (AMD)
+- `glow` renders Markdown in the terminal (`glow MIGRATION.md`, or just
+  `glow` in a folder to browse)
 - `dcraw` is for Strata's camera RAW previews. `bind` gives `dig` for
   AdGuard/DNS debugging
 - Left off on purpose: `wev` (keycode viewer, only needed for the laptop's
