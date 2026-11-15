@@ -131,9 +131,46 @@ laptop; redo them here, or move them into `omarchy/` first):
 - [ ] Theme: Tokyo Night (`omarchy-theme-set`)
 - [ ] `input.lua`: the laptop's `natural_scroll` is touchpad-only, so it
       doesn't matter on a desktop unless you use a trackpad
-- [ ] `monitors.lua`: the laptop uses scale 2 / GDK_SCALE 2 for its
-      2880x1920 panel. **Set it for the desktop monitor instead** (`auto`, or
-      1/1.5 depending on the panel)
+- [ ] `monitors.lua`: **don't copy the laptop's** (scale 2 / GDK_SCALE 2).
+      The desk setup is two Gigabytes through an **iDock B10 KVM**, shared
+      with the work laptop:
+
+      | Monitor | Native | Through KVM | Port | Position | Scale |
+      |---|---|---|---|---|---|
+      | M27UA (27" 4K) | 3840x2160 | 160Hz | DisplayPort | left | 1.5 |
+      | M27Q (27" 1440p) | 2560x1440 | 144Hz | HDMI | right | 1 |
+
+      Both are the same **2560x1440 logical** size, so they line up exactly
+      and the mouse doesn't jump between them (on Windows it does, because
+      Windows lays monitors out in physical pixels). Hyprland positions use
+      logical pixels, so the M27Q starts at x=2560.
+
+      First run `hyprctl monitors all` and note each monitor's `description:`
+      and connector name. Then replace the default `hl.monitor` line with
+      this (keep the comments):
+      ```lua
+      local omarchy_gdk_scale = 1
+      hl.env("GDK_SCALE", tostring(omarchy_gdk_scale))
+
+      -- Match by description, not connector: connectors can rename through
+      -- the KVM. Use the exact text from `hyprctl monitors all`.
+      hl.monitor({ output = "desc:<M27UA description>", mode = "3840x2160@160", position = "0x0",    scale = 1.5 })
+      hl.monitor({ output = "desc:<M27Q description>",  mode = "2560x1440@144", position = "2560x0", scale = 1 })
+      -- Fallback for anything else plugged in later
+      hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
+      ```
+      Then check:
+      - Move the mouse along the shared edge, top to bottom. There should be
+        no jump
+      - `hyprctl monitors` shows 160 and 144 Hz. If the M27UA falls back to
+        60Hz, the DP cable or the KVM's DP port is the limit
+      - XWayland apps (some Electron/older apps) may look small on the 4K at
+        GDK_SCALE 1. That's expected; it keeps them sharp
+      - **KVM switch test:** with a few windows open on each monitor, switch
+        to the work laptop and back. Omarchy's per-monitor workspaces
+        (`monitor-workspaces.lua`, matched by make/model/serial) should
+        put everything back where it was. Note whether the B10 keeps the
+        monitors "connected" while you're switched away, or drops them
 
 ## 4. SSH (NAS only) & Claude
 GitHub stays on HTTPS through `gh` (Section 3). The SSH key below is only
@@ -252,5 +289,8 @@ Windows client, Docker Desktop, `bm-14.1.0.exe` (BenchMate, a Windows-only
 benchmark validator; Section 9 covers burn-in instead).
 
 ## 11. Unresolved
-- [ ] Desktop monitor resolution, for the `monitors.lua` scale (check it on
-      first boot with `hyprctl monitors`)
+- [ ] Fill in the two `desc:` strings in `monitors.lua` from
+      `hyprctl monitors all` on first boot (Section 3)
+- [ ] Before the weekend: check the Framework Desktop's rear ports and
+      cables so the KVM's DisplayPort and HDMI inputs both have a direct
+      match (no adapters if possible; an adapter can cap refresh)
