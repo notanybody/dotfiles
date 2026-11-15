@@ -218,8 +218,29 @@ hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
 - [ ] `~/.config/hypr/hyprland.lua`: add
       `hl.env("XCURSOR_THEME", "capitaine-cursors-light")`
 - [ ] Font: `omarchy-font-set "FiraCode Nerd Font"`, then set size **8** in
-      ghostty (`font-size = 8`), alacritty, and kitty
+      **foot** (the default terminal: `font=FiraCode Nerd Font:size=8` in
+      `~/.config/foot/foot.ini`), plus ghostty (`font-size = 8`), alacritty,
+      and kitty
+- [ ] Default apps (Omarchy ships Chromium and keeps it installed, but the
+      laptop uses Chrome):
+  - `omarchy default browser chrome`: sets Chrome for links and for
+    webapps (`omarchy-launch-webapp` uses the default browser). Check with
+    `omarchy-cmd-default-browser` → `google-chrome.desktop`
+  - `omarchy default agent claude`
+  - The terminal stays foot, Omarchy's default
 - [ ] Theme: Tokyo Night (`omarchy-theme-set`)
+- [ ] **Chrome UI text size** (tabs, address bar, menus). Chrome on Linux
+      takes its UI font from GTK settings, which live in dconf (not
+      dotfiles). The laptop has:
+      ```
+      gsettings set org.gnome.desktop.interface font-name 'Adwaita Sans 10'
+      gsettings set org.gnome.desktop.interface text-scaling-factor 0.8182
+      ```
+      (Omarchy doesn't set 0.8182 on this hardware, so it's a manual change.)
+      Then fully quit and reopen Chrome. These values were tuned for the
+      laptop's 13" panel at scale 2. On the desk monitors, start with the
+      same values and adjust `text-scaling-factor` until the tabs look
+      right. Note that this also affects other GTK apps' text
 
 ## 5. SSH (NAS only) & Claude
 GitHub stays on HTTPS through `gh` (Section 4). The SSH key below is only
