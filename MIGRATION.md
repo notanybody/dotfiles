@@ -217,17 +217,19 @@ hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
 **Manual tweaks** (not stowable; see Section 0):
 - [ ] `~/.config/hypr/hyprland.lua`: add
       `hl.env("XCURSOR_THEME", "capitaine-cursors-light")`
-- [ ] Font: `omarchy-font-set "FiraCode Nerd Font"`, then set size **8** in
-      **foot** (the default terminal: `font=FiraCode Nerd Font:size=8` in
-      `~/.config/foot/foot.ini`), plus ghostty (`font-size = 8`), alacritty,
-      and kitty
+- [ ] Font: `omarchy-font-set "FiraCode Nerd Font"` (sets the family in
+      every terminal), then set `font-size = 10` in `~/.config/ghostty/config`.
+      Ghostty only reads its own config and can't follow a system font size,
+      so this is a hand edit. The other terminals aren't used, so leave
+      their sizes alone
 - [ ] Default apps (Omarchy ships Chromium and keeps it installed, but the
       laptop uses Chrome):
   - `omarchy default browser chrome`: sets Chrome for links and for
     webapps (`omarchy-launch-webapp` uses the default browser). Check with
     `omarchy-cmd-default-browser` → `google-chrome.desktop`
   - `omarchy default agent claude`
-  - The terminal stays foot, Omarchy's default
+  - `omarchy default terminal ghostty` (switched from foot 2026-11-15 for
+    FiraCode ligatures and the ghost animation)
 - [ ] Theme: Tokyo Night (`omarchy-theme-set`)
 - [ ] **Chrome UI text size** (tabs, address bar, menus). Chrome on Linux
       takes its UI font from GTK settings, which live in dconf (not
