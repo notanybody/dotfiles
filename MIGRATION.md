@@ -158,15 +158,19 @@ LocalSend, VLC (streamlink already uses mpv).
       will refuse to overwrite it:
       `mv ~/.config/hypr/monitors.lua ~/.config/hypr/monitors.lua.omarchy`
 - [ ] Stow from `~/Projects/dotfiles`:
-      `stow omarchy desktop nvim starship lazygit eza yazi scripts`
+      `stow omarchy desktop nvim starship lazygit eza yazi scripts ghostty`
   - **Then** `stow --ignore='\.zshrc' zsh`. `omarchy/.zshrc` sources
     `~/.config/zsh/aliases.zsh`, which lives **only** in the shared `zsh/`
     package (`gp`, `gl`, `za`, `mdv`, `$SCRIPTS`, the NAS functions...).
     `--ignore` skips `zsh/.zshrc`, which would conflict with `omarchy/`'s.
     Check with `ls -la ~/.config/zsh/` (both files should be links)
   - **Skip** `tmux btop git` (`omarchy/` overrides them)
-  - **Skip** `ghostty` (the pre-Omarchy hardcoded Tokyo Night Storm config;
-    it would override Omarchy's theme switching)
+  - `ghostty` holds only `overrides.conf` (stowed as a file link next to
+    Omarchy's own `config`). It does nothing until the include line in
+    **Manual tweaks** below is added
+  - **Never** stow `ghostty-mac` on Omarchy (the Mac's old Tokyo Night Storm
+    `config.ghostty`; Ghostty auto-loads that filename, which would
+    override Omarchy's theme switching)
   - **Skip** `xkb` (the desktop keyboard is standard US; the JIS remap is
     laptop-only)
   - **Never** stow `wsl` or `nas`
@@ -229,6 +233,17 @@ hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
       Ghostty only reads its own config and can't follow a system font size,
       so this is a hand edit. The other terminals aren't used, so leave
       their sizes alone
+- [ ] Ghostty overrides (lean-out, 2026-11-15): in `~/.config/ghostty/config`,
+      add this under the theme `config-file` line:
+      ```
+      # Personal overrides (tracked in dotfiles; loads last, wins over everything)
+      config-file = ?"overrides.conf"
+      ```
+      `overrides.conf` (from the `ghostty` package) turns off toasts, desktop
+      notifications and the bell, sets padding to 6, and unbinds Ghostty's
+      tab/split/fullscreen keys. Reload with Ctrl+Shift+, then check
+      `ghostty +list-keybinds | wc -l` shows 34 and copying text shows no
+      toast. If an Omarchy update regenerates the config, re-add the line
 - [ ] Default apps (Omarchy ships Chromium and keeps it installed, but the
       laptop uses Chrome):
   - `omarchy default browser chrome`: sets Chrome for links and for
