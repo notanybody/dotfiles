@@ -1,14 +1,17 @@
 # Framework Desktop Migration
 
-Boot-day checklist for setting up the Framework Desktop (Ryzen AI Max+ 395 /
-64GB, own 2TB SSD) as an Omarchy daily driver that matches the Framework 13
+Checklist for setting up the Framework Desktop (Ryzen AI Max+ 395 / 64GB,
+own 2TB SSD) as an Omarchy daily driver that matches the Framework 13
 laptop. The desktop also runs the local AI stack (KoboldCpp + SwarmUI, with
 SillyTavern on the NAS; see `project_local_ai_stack` in Claude memory) and
 gets Steam for occasional gaming. Dojo stays the dedicated gaming machine.
-The Beelink becomes a travel PC. Don't wipe it as part of this.
+The desktop replaces the Beelink on the desk KVM; the Beelink becomes a
+travel PC. Don't wipe it as part of this.
 
-Inventory last diffed against the laptop on **2026-11-13** (`pacman -Qqe` vs
-Omarchy's package lists, `~/.local/bin`, webapps, hypr overrides, services).
+**Status:** held in customs (missing documentation), no firm ETA as of
+2026-11-15. Inventory last diffed against the laptop on **2026-11-15**
+(`pacman -Qqe` vs Omarchy's package lists, `~/.local/bin`, webapps, hypr
+overrides, services).
 
 **Why Omarchy over Bazzite:** Bazzite's two advantages, atomic rollback and
 AI-stack convenience, don't apply here. Rollback matters most for a box
@@ -17,9 +20,13 @@ Vulkan to avoid needing ROCm, so Bazzite has no driver edge. The tradeoff
 is accepted: no reboot-to-rollback, so recovery is manual (Omarchy's
 limine/snapper snapshots, or chroot from a live USB), same as the laptop.
 
+**Flow:** 0 prep → 1 install + firmware → 2 burn-in → 3 packages →
+4 dotfiles → 5 SSH & Claude → 6 network & NAS → 7 apps → 8 AI host →
+9 project reconnects.
+
 ---
 
-## 0. Before the weekend (on the laptop)
+## 0. Before it arrives (on the laptop)
 - [x] Fixed `/etc/pacman.conf`: removed the stray `EOF` line that the Cider
       repo heredoc left behind (2026-11-13)
 - [x] `~/Projects/photo-badge` is now in git and pushed to
@@ -31,40 +38,85 @@ limine/snapper snapshots, or chroot from a live USB), same as the laptop.
   - `~/.config/b2/`: B2 CLI account info (or just re-authorize `b2` with the
     key from Vaultwarden)
   - NAS SMB password for `/etc/samba/credentials-nas`
-- [ ] Commit/push any open dotfiles, scripts, and claude-memory changes
+- [ ] Build the **`desktop/` stow package** (same pattern as `wsl/`/`nas/`):
+      `desktop/.config/hypr/monitors.lua` with the layout from Section 4,
+      `desc:` placeholders included. **Only `monitors.lua`.** Fonts and the
+      cursor line can't be stowed safely: `omarchy-font-set` runs
+      `sed -i` on the terminal configs, which replaces a stow symlink with a
+      plain file. They stay as manual steps in Section 4
+- [ ] Check the Framework Desktop's rear ports and your cables so the KVM's
+      **DisplayPort** and **HDMI** inputs both connect directly (avoid
+      adapters; one can cap refresh)
 - [ ] Have a wired Ethernet cable ready (the AI host should be wired)
+- [ ] Have an Omarchy USB installer ready (re-download the ISO close to
+      ship day)
+- [ ] **When it ships:** re-run the inventory diff (compare
+      `pacman -Qqe` against `/usr/share/omarchy/install/*.packages`, and
+      check `~/.local/bin` and `~/.local/share/applications`) and fold any
+      new installs into Section 3
+- [ ] The night before: commit/push any open dotfiles, scripts, and
+      claude-memory changes
 
-## 1. OS install & first boot
+## 1. OS install & firmware
+- [ ] BIOS first: set the iGPU memory (UMA) split so up to ~48GB can go to
+      the GPU, per the AI stack plan. Doing it now means the Section 2
+      memory test covers the real split
 - [ ] Install Omarchy with the **same username, `senchou`**. Claude's memory
       path (`~/.claude/projects/-home-senchou/`), the fstab `uid=1000`, and the
       Strata binds all assume it
+- [ ] Plug in Ethernet, then `omarchy-update`
+- [ ] Firmware: `fwupdmgr refresh && fwupdmgr get-updates`, then
+      `fwupdmgr update` (Framework ships BIOS updates through LVFS). Reboot
+      if it asks. If the BIOS update resets settings, re-check UMA
 - [ ] Mesa/amdgpu + `vulkan-radeon` cover the Strix Halo APU, so no vendor
       driver is needed. Check with `vulkaninfo --summary` (Vulkan is also
       what KoboldCpp uses)
 - [ ] Write the specs memory: `cat /sys/class/dmi/id/product_name`, `lscpu`,
       `free -h`, `lsblk`. Check them against the order (395 / 64GB / 2TB)
-- [ ] Hardware burn-in (Section 9) before you install much else
 
-## 2. Packages (diffed from the laptop)
+## 2. Burn-in (before installing much else)
+- [ ] Tools: `sudo pacman -S stress-ng s-tui smartmontools` (`lm_sensors`
+      and `inxi` come with Omarchy), `yay -S mprime-bin`, and
+      **memtest_vulkan** as the Linux release binary from its GitHub page
+      (it isn't in the AUR; put it in `~/.local/bin`)
+- [ ] `inxi -Fz` and `sensors`: full hardware summary and baseline temps
+- [ ] `smartctl -a /dev/nvme0`: the new 2TB SSD (no errors, health OK)
+- [ ] `memtest_vulkan`: VRAM/unified memory. Let it run at least a few
+      minutes with zero errors
+- [ ] `stress-ng` with `s-tui` watching: CPU/thermals (stand-in for OCCT).
+      Watch the Noctua fan curve
+- [ ] `mprime` for a longer soak, if you want one
+
+## 3. Packages (diffed from the laptop)
 Everything below was installed explicitly on the laptop and is not part of
-Omarchy's defaults:
+Omarchy's defaults, plus Steam:
 
 ```
 sudo pacman -S --needed stow zsh yazi git-delta lazydocker \
   tailscale age bitwarden bitwarden-cli \
-  google-chrome streamlink python-pipx \
+  google-chrome streamlink python-pipx python-tqdm \
   capitaine-cursors ttf-firacode-nerd \
   obs-studio kdenlive xournalpp \
   gst-libav gst-plugins-good gst-plugins-bad gst-plugins-ugly \
-  clang llvm dcraw bind wev
+  mgba-qt qt5-wayland syncthing steam \
+  dcraw bind
 ```
 
 Notes:
+- `python-tqdm`: the NAS scripts' progress bar (`pacman_bar.py`) needs it,
+  otherwise `organize-incoming` fails with `No module named 'tqdm'`. Use
+  pacman, not pip (Arch blocks system pip)
+- `qt5-wayland`: mgba-qt is built on Qt5, and Omarchy doesn't ship Qt5's
+  Wayland plugin. Without it mGBA warns
+  `Could not find the Qt platform plugin "wayland"` and falls back to
+  XWayland (blurry UI)
+- `steam` needs multilib, which Omarchy already enables. When it asks
+  which Vulkan driver to use, pick `vulkan-radeon` (AMD)
 - `dcraw` is for Strata's camera RAW previews. `bind` gives `dig` for
-  AdGuard/DNS debugging. `wev` is a keycode viewer (it was used for the JIS
-  remap; optional on a US keyboard)
-- `clang`/`llvm` came in for the photo-badge / PlatformIO work. Skip them
-  until you need them
+  AdGuard/DNS debugging
+- Left off on purpose: `wev` (keycode viewer, only needed for the laptop's
+  JIS remap), and `clang`/`llvm` (only for photo-badge/PlatformIO work; add
+  them when that resumes)
 - Omarchy already provides `docker`, `obsidian`, `mise`, `uv`, `gh`, node,
   and `claude` (via mise), so don't reinstall those
 
@@ -89,91 +141,88 @@ Notes:
       Omarchy keybinds and udiskie (stow brings our binds). Then in Settings
       → Appearance, turn on Follow Omarchy
 - [ ] `uv tool install b2` (B2 CLI for the off-site bucket)
-- [ ] `pipx install platformio` (only when photo-badge work resumes)
-- [ ] mGBA for the Pokémon nuzlockes: `sudo pacman -S mgba-qt qt5-wayland syncthing`
-      (all in `extra`, no AUR needed). mgba-qt is built on Qt5, and Omarchy
-      doesn't ship Qt5's Wayland plugin. Without `qt5-wayland` it warns
-      `Could not find the Qt platform plugin "wayland"` and falls back to
-      XWayland (blurry UI). Syncthing and save setup are in Section 8
+- [ ] `pipx install platformio`: only when photo-badge work resumes
 
-**Optional, from the old Windows installers list** (not on the laptop; add
-only if you miss them): Chatterino, LocalSend, VLC (streamlink already
-uses mpv), Steam (`sudo pacman -S steam`; needs multilib, which is already
-on).
+**Optional** (not on the laptop; add only if you miss them): Chatterino,
+LocalSend, VLC (streamlink already uses mpv).
 
-## 3. Dotfiles & config
+## 4. Dotfiles & config
 - [ ] `gh auth login` (GitHub.com, **HTTPS**, log in with a web browser).
       `gh` comes with Omarchy, and Omarchy's git config already uses it as
       the credential helper, so no SSH key is needed for GitHub
 - [ ] `mkdir ~/Projects`, then clone `dotfiles`, `scripts`, `claude-memory`,
       and `photo-badge` there over HTTPS (`gh repo clone notanybody/<repo>`)
-- [ ] `git pull`, then stow from `~/Projects/dotfiles`:
-      `omarchy nvim starship lazygit eza yazi scripts`
-      **Skip** the shared `tmux btop zsh git` packages (`omarchy/` overrides
-      them). **Never** stow `wsl` or `nas`. Also skip `ghostty`: it's the
-      pre-Omarchy hardcoded Tokyo Night Storm config, it isn't stowed on the
-      laptop, and it would override Omarchy's theme switching
-- [ ] **Skip the `xkb` package.** The desktop keyboard is standard US, and
-      the JIS remap is laptop-only. Leave `input.lua`'s `kb_layout` at
-      Omarchy's default (don't copy the laptop's `us-jis` line)
+- [ ] Move Omarchy's default monitor file out of the way first, or stow
+      will refuse to overwrite it:
+      `mv ~/.config/hypr/monitors.lua ~/.config/hypr/monitors.lua.omarchy`
+- [ ] Stow from `~/Projects/dotfiles`:
+      `stow omarchy desktop nvim starship lazygit eza yazi scripts`
+  - **Skip** `tmux btop zsh git` (`omarchy/` overrides them)
+  - **Skip** `ghostty` (the pre-Omarchy hardcoded Tokyo Night Storm config;
+    it would override Omarchy's theme switching)
+  - **Skip** `xkb` (the desktop keyboard is standard US; the JIS remap is
+    laptop-only)
+  - **Never** stow `wsl` or `nas`
 - [ ] `chsh -s /usr/bin/zsh`, then log out and back in
 - [ ] Re-link the `stream` script: `ln -s ~/Projects/scripts/stream
       ~/.local/bin/stream`
-- [ ] `sudo pacman -S python-tqdm`: the NAS scripts' progress bar
-      (`pacman_bar.py`) needs it, otherwise `organize-incoming` fails with
-      `No module named 'tqdm'`. Use pacman, not pip (Arch blocks system pip)
 
-**Hypr/terminal tweaks that are NOT in dotfiles** (made by hand on the
-laptop; redo them here, or move them into `omarchy/` first):
-- [ ] `hyprland.lua`: add `hl.env("XCURSOR_THEME", "capitaine-cursors-light")`
+**Monitors** (`desktop/` package): two Gigabytes through an **iDock B10
+KVM**, shared with the work laptop:
+
+| Monitor | Native | Through KVM | Port | Position | Scale |
+|---|---|---|---|---|---|
+| M27UA (27" 4K) | 3840x2160 | 160Hz | DisplayPort | left | 1.5 |
+| M27Q (27" 1440p) | 2560x1440 | 144Hz | HDMI | right | 1 |
+
+Both are the same **2560x1440 logical** size, so they line up exactly and
+the mouse doesn't jump between them (on Windows it does, because Windows
+lays monitors out in physical pixels). Hyprland positions use logical
+pixels, so the M27Q starts at x=2560. Never use the M27Q's 3840x2160 mode:
+the panel just downscales it, which makes text soft.
+
+The `desktop/` package's `monitors.lua` (built in Section 0):
+```lua
+local omarchy_gdk_scale = 1
+hl.env("GDK_SCALE", tostring(omarchy_gdk_scale))
+
+-- Match by description, not connector: connectors can rename through
+-- the KVM. Use the exact text from `hyprctl monitors all`.
+hl.monitor({ output = "desc:<M27UA description>", mode = "3840x2160@160", position = "0x0",    scale = 1.5 })
+hl.monitor({ output = "desc:<M27Q description>",  mode = "2560x1440@144", position = "2560x0", scale = 1 })
+-- Fallback for anything else plugged in later
+hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
+```
+- [ ] `hyprctl monitors all`: copy each monitor's `description:` into the
+      two placeholders. The file is a symlink into the repo, so commit the
+      change from `~/Projects/dotfiles`
+- [ ] Move the mouse along the shared edge, top to bottom. There should be
+      no jump
+- [ ] `hyprctl monitors` shows 160 and 144 Hz. If the M27UA falls back to
+      60Hz, the DP cable or the KVM's DP port is the limit
+- [ ] XWayland apps (some Electron/older apps) may look small on the 4K at
+      GDK_SCALE 1. That's expected; it keeps them sharp
+- [ ] **KVM switch test:** with a few windows open on each monitor, switch
+      to the work laptop and back. Omarchy's per-monitor workspaces
+      (`monitor-workspaces.lua`, matched by make/model/serial) should put
+      everything back where it was. Note whether the B10 keeps the monitors
+      "connected" while you're switched away, or drops them
+- **Stow hazards:** two Omarchy tools break the `monitors.lua` link:
+  - The monitor-scaling menu (`omarchy-hyprland-monitor-scaling`) replaces
+    the link with a plain file. Change scale in the repo file instead
+  - `omarchy-refresh-hyprland` copies Omarchy's defaults *through* the link,
+    into the repo. If `git status` shows `monitors.lua` changed after an
+    Omarchy update, `git restore` it
+
+**Manual tweaks** (not stowable; see Section 0):
+- [ ] `~/.config/hypr/hyprland.lua`: add
+      `hl.env("XCURSOR_THEME", "capitaine-cursors-light")`
 - [ ] Font: `omarchy-font-set "FiraCode Nerd Font"`, then set size **8** in
       ghostty (`font-size = 8`), alacritty, and kitty
 - [ ] Theme: Tokyo Night (`omarchy-theme-set`)
-- [ ] `input.lua`: the laptop's `natural_scroll` is touchpad-only, so it
-      doesn't matter on a desktop unless you use a trackpad
-- [ ] `monitors.lua`: **don't copy the laptop's** (scale 2 / GDK_SCALE 2).
-      The desk setup is two Gigabytes through an **iDock B10 KVM**, shared
-      with the work laptop:
 
-      | Monitor | Native | Through KVM | Port | Position | Scale |
-      |---|---|---|---|---|---|
-      | M27UA (27" 4K) | 3840x2160 | 160Hz | DisplayPort | left | 1.5 |
-      | M27Q (27" 1440p) | 2560x1440 | 144Hz | HDMI | right | 1 |
-
-      Both are the same **2560x1440 logical** size, so they line up exactly
-      and the mouse doesn't jump between them (on Windows it does, because
-      Windows lays monitors out in physical pixels). Hyprland positions use
-      logical pixels, so the M27Q starts at x=2560.
-
-      First run `hyprctl monitors all` and note each monitor's `description:`
-      and connector name. Then replace the default `hl.monitor` line with
-      this (keep the comments):
-      ```lua
-      local omarchy_gdk_scale = 1
-      hl.env("GDK_SCALE", tostring(omarchy_gdk_scale))
-
-      -- Match by description, not connector: connectors can rename through
-      -- the KVM. Use the exact text from `hyprctl monitors all`.
-      hl.monitor({ output = "desc:<M27UA description>", mode = "3840x2160@160", position = "0x0",    scale = 1.5 })
-      hl.monitor({ output = "desc:<M27Q description>",  mode = "2560x1440@144", position = "2560x0", scale = 1 })
-      -- Fallback for anything else plugged in later
-      hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
-      ```
-      Then check:
-      - Move the mouse along the shared edge, top to bottom. There should be
-        no jump
-      - `hyprctl monitors` shows 160 and 144 Hz. If the M27UA falls back to
-        60Hz, the DP cable or the KVM's DP port is the limit
-      - XWayland apps (some Electron/older apps) may look small on the 4K at
-        GDK_SCALE 1. That's expected; it keeps them sharp
-      - **KVM switch test:** with a few windows open on each monitor, switch
-        to the work laptop and back. Omarchy's per-monitor workspaces
-        (`monitor-workspaces.lua`, matched by make/model/serial) should
-        put everything back where it was. Note whether the B10 keeps the
-        monitors "connected" while you're switched away, or drops them
-
-## 4. SSH (NAS only) & Claude
-GitHub stays on HTTPS through `gh` (Section 3). The SSH key below is only
+## 5. SSH (NAS only) & Claude
+GitHub stays on HTTPS through `gh` (Section 4). The SSH key below is only
 for the NAS.
 - [ ] `ssh-keygen -t ed25519` (a new key per machine; don't copy the
       laptop's)
@@ -189,10 +238,10 @@ for the NAS.
       `ln -s ~/Projects/claude-memory ~/.claude/projects/-home-senchou/memory`
 - [ ] `claude`, then log in. Check that it sees MEMORY.md
 
-## 5. Networking & NAS
+## 6. Networking & NAS
 - [ ] `sudo systemctl enable --now tailscaled`, `sudo tailscale up`, then
-      approve the node in the admin console. Consider turning off key expiry
-      for this node (it's a server for the AI stack)
+      approve the node in the admin console. Turn off key expiry for this
+      node (it's a server for the AI stack)
 - [ ] NAS mount: create `/etc/samba/credentials-nas` by hand
       (`username=`/`password=`, `chmod 600`), add **both** CIFS lines from the
       README (`personal_folder` + `stash`) to `/etc/fstab`,
@@ -201,13 +250,11 @@ for the NAS.
       Check with `ls /mnt/nas/senchou/obsidian-vault /mnt/nas/stash`
 - [ ] File-picker bookmarks (not stowed): append to `~/.config/gtk-3.0/bookmarks`
       `file:///mnt/nas/senchou nas` and `file:///mnt/nas/stash stash`
-- [ ] Obsidian app: open the vault at `/mnt/nas/senchou/obsidian-vault`
-      (`obsidian.nvim` already points there via `omarchy/`)
 - [ ] Restore `~/.age/` from Vaultwarden/USB (`chmod 700`), and set up `b2`
       auth if you need it on this box
-- [ ] Wired Ethernet. Optionally give it a DHCP reservation on the Deco
+- [ ] Optional: give the desktop a DHCP reservation on the Deco
 
-## 6. Apps & logins
+## 7. Apps & logins
 - [ ] Chrome: sign in to sync (brings extensions, including Linkding's).
       Bitwarden desktop + browser extension, pointed at
       `vault.tail90599c.ts.net` (YubiKey)
@@ -224,28 +271,42 @@ for the NAS.
   - Check the SUPER+SHIFT+D (Discord) and SUPER+SHIFT+L (Linkding)
     binds; they come from the stowed `bindings.lua` and match on
     `chrome-<site>`
-- [ ] Logins: Discord, Cider/Apple Music, Proton, Chrome, Obsidian (if
-      synced), OBS settings (re-create scenes by hand)
+- [ ] Obsidian app: open the vault at `/mnt/nas/senchou/obsidian-vault`
+      (`obsidian.nvim` already points there via `omarchy/`)
+- [ ] Logins: Discord, Cider/Apple Music, Proton, Chrome, Steam, OBS
+      settings (re-create scenes by hand)
 
-## 7. Desktop-only: AI host prep
-- [ ] Turn off suspend for this box (hypridle / `omarchy` idle settings), or
-      set up Wake-on-LAN from the NAS
+## 8. Desktop-only: AI host prep
+- [ ] **Turn system sleep off** (decided 2026-11-15; revisit once you see
+      how much the AI stack gets used remotely). Use the same drop-in
+      Omarchy uses on hardware where it disables sleep, so its menus know
+      sleep is off. Create `/etc/systemd/sleep.conf.d/omarchy-sleep-disabled.conf`
+      with:
+      ```
+      [Sleep]
+      AllowSuspend=no
+      AllowHibernation=no
+      AllowSuspendThenHibernate=no
+      AllowHybridSleep=no
+      ```
+      Check with `omarchy-sleep-disabled && echo off`. The screen lock and
+      screen-off still work as normal. The alternative, if idle power
+      matters later, is Wake-on-LAN from the NAS
 - [ ] Firewall is **ufw** on Omarchy (not firewalld). Open the AI ports on
       Tailscale only, e.g.
       `sudo ufw allow in on tailscale0 to any port 5001 proto tcp` (KoboldCpp)
       and `7801` (SwarmUI). Never port-forward on the router
-- [ ] Give the iGPU up to ~48GB in BIOS/UMA settings, per the AI stack plan
 - [ ] KoboldCpp + SwarmUI bring-up per `project_local_ai_stack`. That's a
-      separate session once the hardware checks pass
+      separate session once everything above is done
 
-## 8. Project reconnects
+## 9. Project reconnects
 - [ ] Strava dashboard, media downloader, ghost animation: pull from
       `scripts`/dotfiles and re-check the NAS paths. Recreate any `.venv`
       with `uv venv` / `sv`
-- [ ] photo-badge (cloned in Section 3): `pipx install platformio`. The first `pio run` rebuilds
-      `.pio/` (~98MB of toolchains, gitignored). Flashing goes through
-      `/dev/ttyACM0`, so add yourself to `uucp` if it isn't already set
-      (the laptop has it)
+- [ ] photo-badge (cloned in Section 4): `pipx install platformio` (plus
+      `clang llvm`). The first `pio run` rebuilds `.pio/` (~98MB of
+      toolchains, gitignored). Flashing goes through `/dev/ttyACM0`, so add
+      yourself to `uucp` if it isn't already set (the laptop has it)
 - [ ] `stream`: check that streamlink plays through mpv (`omarchy/` stows
       `streamlink/config`)
 - [ ] mGBA saves via Syncthing. The NAS is the hub
@@ -275,22 +336,10 @@ for the NAS.
         shows the latest progress, save, quit, and confirm the laptop
         receives the new `.sav`
 
-## 9. Hardware checks
-- [ ] `memtest_vulkan` (Linux build): VRAM/unified memory
-- [ ] `stress-ng` + `s-tui`: CPU/thermals (stand-in for OCCT). Watch the
-      Noctua fan curve
-- [ ] `mprime` (Prime95 CLI) for a longer soak, if you want one
-- [ ] `smartctl -a /dev/nvme0` (`smartmontools`): the new 2TB SSD
-- [ ] `inxi -Fz`, `sensors` (`lm_sensors`): full hardware summary
-
-## 10. Not needed on Linux
+## Not needed on Linux
 `amdcleanuputility`, `driverfusionfreesetup`, AMD Adrenalin, UGREEN NAS
 Windows client, Docker Desktop, `bm-14.1.0.exe` (BenchMate, a Windows-only
-benchmark validator; Section 9 covers burn-in instead).
+benchmark validator; Section 2 covers burn-in instead).
 
-## 11. Unresolved
-- [ ] Fill in the two `desc:` strings in `monitors.lua` from
-      `hyprctl monitors all` on first boot (Section 3)
-- [ ] Before the weekend: check the Framework Desktop's rear ports and
-      cables so the KVM's DisplayPort and HDMI inputs both have a direct
-      match (no adapters if possible; an adapter can cap refresh)
+## Unresolved
+- [ ] Shipping: held in customs, no ETA (2026-11-15)
