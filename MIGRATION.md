@@ -20,6 +20,12 @@ Vulkan to avoid needing ROCm, so Bazzite has no driver edge. The tradeoff
 is accepted: no reboot-to-rollback, so recovery is manual (Omarchy's
 limine/snapper snapshots, or chroot from a live USB), same as the laptop.
 
+**Day-1 reference:** until Section 4, read this from the laptop
+(`cat ~/Projects/dotfiles/MIGRATION.md`) or on GitHub (public repo, no login
+needed, opens in the desktop's Chromium too):
+github.com/notanybody/dotfiles/blob/master/MIGRATION.md. Tick boxes on the
+laptop and push now and then so progress survives a multi-day setup.
+
 **Flow:** 0 prep → 1 install + firmware → 2 burn-in → 3 packages →
 4 dotfiles → 5 SSH & Claude → 6 network & NAS → 7 apps → 8 AI host →
 9 project reconnects.
