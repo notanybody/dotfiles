@@ -189,11 +189,21 @@ LocalSend, VLC (streamlink already uses mpv).
       the credential helper, so no SSH key is needed for GitHub
 - [x] `mkdir ~/Projects`, then clone `dotfiles`, `scripts`, `claude-memory`,
       and `photo-badge` there over HTTPS (`gh repo clone notanybody/<repo>`) (2026-11-19)
-- [ ] Move Omarchy's default monitor file out of the way first, or stow
+- [x] Move Omarchy's default monitor file out of the way first, or stow
       will refuse to overwrite it:
       `mv ~/.config/hypr/monitors.lua ~/.config/hypr/monitors.lua.omarchy`
-- [ ] Stow from `~/Projects/dotfiles`:
+- [x] Stow from `~/Projects/dotfiles` (2026-11-19):
       `stow omarchy desktop nvim starship lazygit eza yazi scripts ghostty`
+  - A fresh install conflicts on 15 Omarchy files (bindings.lua, btop,
+    git/config, lazygit, nvim starter files, starship.toml, tmux.conf).
+    Move them aside **from inside the repo** (`.stowrc` sets the target
+    only when stow runs there):
+    ```
+    stow -n -v omarchy desktop nvim starship lazygit eza yazi scripts ghostty 2>&1 \
+      | grep -oP 'existing target \K\S+' \
+      | while read f; do mkdir -p ~/omarchy-defaults/$(dirname "$f"); mv ~/"$f" ~/omarchy-defaults/"$f"; done
+    ```
+    Originals stay in `~/omarchy-defaults/`
   - **Then** `stow --ignore='\.zshrc' zsh`. `omarchy/.zshrc` sources
     `~/.config/zsh/aliases.zsh`, which lives **only** in the shared `zsh/`
     package (`gp`, `gl`, `za`, `mdv`, `$SCRIPTS`, the NAS functions...).
