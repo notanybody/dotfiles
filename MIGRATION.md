@@ -462,15 +462,15 @@ for the NAS.
       (`https://sync.tail90599c.ts.net`, login in Vaultwarden "Syncthing – NAS"),
       and each machine keeps a local copy in `~/Games/gba`. **Never play off
       `/mnt/nas`.**
-  - [ ] `systemctl --user enable --now syncthing`, then open
+  - [x] `systemctl --user enable --now syncthing`, then open
         http://127.0.0.1:8384
-  - [ ] Settings → Connections: Listen Addresses `tcp://0.0.0.0:22000`,
+  - [x] Settings → Connections: Listen Addresses `tcp://0.0.0.0:22000`,
         untick NAT traversal, Global Discovery, Local Discovery and Relaying
         (tailnet-only, same as the laptop)
-  - [ ] Pair: NAS UI → Actions → Show ID. Desktop UI → Add Remote Device,
-        name `nas`, Advanced → Addresses `tcp://sync.tail90599c.ts.net:22000`.
+  - [x] Pair: NAS UI → Actions → Show ID. Desktop UI → Add Remote Device,
+        name `nas`, Advanced → Addresses `tcp://sync.tail90599c.ts.net:22000`. (`tcp://`, **not** `https://`, or the NAS never sees the desktop)
         Accept the prompt on the NAS as `desktop` (address `dynamic`)
-  - [ ] NAS UI → `gba` folder → Edit → Sharing → tick `desktop`. On the
+  - [x] NAS UI → `gba` folder → Edit → Sharing → tick `desktop`. On the
         desktop, accept it with Folder Path **`~/Games/gba`** (not the
         default `~/gba`). Wait for Up to Date, and check that
         `eza -T ~/Games/gba` shows `pokemon/` (no `_archive`, which is
