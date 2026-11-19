@@ -102,8 +102,10 @@ laptop and push now and then so progress survives a multi-day setup.
       (fan-stop at idle; confirm they spin under load). BIOS INSYDE 03.06
       (2026-07-13). NICs: RTL8126 5GbE `enp191s0`, MT7925 Wi-Fi 7
 - [x] `smartctl -a /dev/nvme0`: the new 2TB SSD (no errors, health OK). PASSED, 0 errors, 0% used (2026-11-19)
-- [ ] `memtest_vulkan`: VRAM/unified memory. Let it run at least a few
-      minutes with zero errors
+- [x] `memtest_vulkan`: VRAM/unified memory. Let it run at least a few
+      minutes with zero errors. 2026-11-19: v0.5.0, standard 5-min test
+      PASSED + ~1 min extended, ~212GB/s, tested **22GB** (what the default
+      GTT limit exposes at BIOS minimum; re-check after the Section 8 GTT bump)
 - [ ] `stress-ng` with `s-tui` watching: CPU/thermals (stand-in for OCCT).
       Watch the Noctua fan curve
 - [ ] `mprime` for a longer soak, if you want one
