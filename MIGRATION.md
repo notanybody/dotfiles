@@ -358,6 +358,13 @@ for the NAS.
 - [x] (2026-11-19, node `omarchy-desktop`) `sudo systemctl enable --now tailscaled`, `sudo tailscale up`, then
       approve the node in the admin console. Turn off key expiry for this
       node (it's a server for the AI stack)
+- [x] **SSH into the desktop over Tailscale** (2026-11-19). During setup,
+      `openssh` + `sudo systemctl enable --now sshd` + a temporary
+      `ufw allow from 192.168.68.0/24 to any port 22` let the laptop drive it
+      over the LAN. Final state: `sudo ufw allow in on tailscale0 to any port
+      22 proto tcp`, laptop key via `ssh-copy-id omarchy-desktop`, LAN rule
+      deleted. From the laptop: `ssh omarchy-desktop`. Over SSH, `hyprctl`
+      and `omarchy-*` need the two `export`s from Section 4
 - [ ] NAS mount: create `/etc/samba/credentials-nas` by hand
       (`username=`/`password=`, `chmod 600`), add **both** CIFS lines from the
       README (`personal_folder` + `stash`) to `/etc/fstab`,
