@@ -106,8 +106,9 @@ laptop and push now and then so progress survives a multi-day setup.
       minutes with zero errors. 2026-11-19: v0.5.0, standard 5-min test
       PASSED + ~1 min extended, ~212GB/s, tested **22GB** (what the default
       GTT limit exposes at BIOS minimum; re-check after the Section 8 GTT bump)
-- [ ] `stress-ng` with `s-tui` watching: CPU/thermals (stand-in for OCCT).
-      Watch the Noctua fan curve
+- [x] `stress-ng` with `s-tui` watching: CPU/thermals (stand-in for OCCT).
+      Watch the Noctua fan curve. 2026-11-19: 15 min, 32 threads, 0 failed,
+      57.3k bogo ops/s sustained (vs 56.3k in the first 30s, so no throttling)
 - [ ] `mprime` for a longer soak, if you want one
 
 ## 3. Packages (diffed from the laptop)
