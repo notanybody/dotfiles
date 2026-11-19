@@ -378,10 +378,10 @@ for the NAS.
 - [ ] Optional: give the desktop a DHCP reservation on the Deco
 
 ## 7. Apps & logins
-- [ ] Chrome: sign in to sync (brings extensions, including Linkding's).
+- [x] Chrome: sign in to sync (brings extensions, including Linkding's).
       Bitwarden desktop + browser extension, pointed at
       `vault.tail90599c.ts.net` (YubiKey)
-- [ ] `bw config server https://vault.tail90599c.ts.net` for bitwarden-cli
+- [x] `bw config server https://vault.tail90599c.ts.net` for bitwarden-cli
 - [x] (copied via scp 2026-11-19) Webapps (SUPER+SPACE, Install Web App, or `omarchy-webapp-install`).
       Faster: copy the launchers + icons from the laptop over Tailscale
       (run on the laptop):
@@ -408,12 +408,13 @@ for the NAS.
     `chrome-<site>`
 - [ ] Obsidian app: open the vault at `/mnt/nas/senchou/obsidian-vault`
       (`obsidian.nvim` already points there via `omarchy/`)
-- [ ] Logins: Discord, Cider/Apple Music, Proton, Chrome, Steam, OBS
+- [x] Logins: Discord, Cider/Apple Music, Proton, Chrome, Steam, OBS
       settings (re-create scenes by hand). 2026-11-19: Discord, Proton,
-      Ghostfolio, Actual, Cider done; Steam updating
+      Ghostfolio, Actual, Cider, Chrome, Bitwarden, Linkding, Steam done;
+      OBS scenes when needed
 
 ## 8. Desktop-only: AI host prep
-- [ ] **Turn system sleep off** (decided 2026-11-15; revisit once you see
+- [x] (2026-11-19) **Turn system sleep off** (decided 2026-11-15; revisit once you see
       how much the AI stack gets used remotely). Use the same drop-in
       Omarchy uses on hardware where it disables sleep, so its menus know
       sleep is off. Create `/etc/systemd/sleep.conf.d/omarchy-sleep-disabled.conf`
