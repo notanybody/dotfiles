@@ -371,10 +371,10 @@ for the NAS.
       `sudo mkdir -p /mnt/nas/senchou /mnt/nas/stash`, then
       `sudo systemctl daemon-reload && sudo systemctl restart remote-fs.target`.
       Check with `ls /mnt/nas/senchou/obsidian-vault /mnt/nas/stash`
-- [ ] File-picker bookmarks (not stowed): append to `~/.config/gtk-3.0/bookmarks`
+- [x] File-picker bookmarks (not stowed): append to `~/.config/gtk-3.0/bookmarks`
       `file:///mnt/nas/senchou nas` and `file:///mnt/nas/stash stash`
-- [ ] Restore `~/.age/` from Vaultwarden/USB (`chmod 700`), and set up `b2`
-      auth if you need it on this box
+- [x] Restore `~/.age/` from Vaultwarden/USB (`chmod 700`), and set up `b2`
+      auth if you need it on this box (age restored via `scp -r ~/.age omarchy-desktop:` 2026-11-19; b2 auth skipped)
 - [ ] Optional: give the desktop a DHCP reservation on the Deco
 
 ## 7. Apps & logins
