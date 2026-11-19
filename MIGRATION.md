@@ -8,8 +8,8 @@ gets Steam for occasional gaming. Dojo stays the dedicated gaming machine.
 The desktop replaces the Beelink on the desk KVM; the Beelink becomes a
 travel PC. Don't wipe it as part of this.
 
-**Status:** held in customs (missing documentation), no firm ETA as of
-2026-11-15. Inventory last diffed against the laptop on **2026-11-15**
+**Status:** arrived and built 2026-11-19; migration started 2026-11-19.
+Inventory last diffed against the laptop on **2026-11-19**
 (`pacman -Qqe` vs Omarchy's package lists, `~/.local/bin`, webapps, hypr
 overrides, services).
 
@@ -50,16 +50,16 @@ laptop and push now and then so progress survives a multi-day setup.
       cursor line can't be stowed safely: `omarchy-font-set` runs
       `sed -i` on the terminal configs, which replaces a stow symlink with a
       plain file. They stay as manual steps in Section 4
-- [ ] Check the Framework Desktop's rear ports and your cables so the KVM's
+- [x] Check the Framework Desktop's rear ports and your cables so the KVM's
       **DisplayPort** and **HDMI** inputs both connect directly (avoid
-      adapters; one can cap refresh)
+      adapters; one can cap refresh) (2026-11-19)
 - [ ] Have a wired Ethernet cable ready (the AI host should be wired)
-- [ ] Have an Omarchy USB installer ready (re-download the ISO close to
-      ship day)
-- [ ] **When it ships:** re-run the inventory diff (compare
+- [x] Have an Omarchy USB installer ready (fresh ISO written 2026-11-19)
+- [x] **When it ships:** re-run the inventory diff (compare
       `pacman -Qqe` against `/usr/share/omarchy/install/*.packages`, and
       check `~/.local/bin` and `~/.local/share/applications`) and fold any
-      new installs into Section 3
+      new installs into Section 3 (2026-11-19: added `solaar`; `esptool`
+      left off, it's Cardputer-only)
 - [ ] The night before: commit/push any open dotfiles, scripts, and
       claude-memory changes
 
@@ -105,7 +105,7 @@ sudo pacman -S --needed stow zsh yazi git-delta lazydocker \
   obs-studio kdenlive xournalpp \
   gst-libav gst-plugins-good gst-plugins-bad gst-plugins-ugly \
   mgba-qt qt5-wayland syncthing steam glow \
-  dcraw bind
+  dcraw bind solaar
 ```
 
 Notes:
@@ -120,11 +120,14 @@ Notes:
   which Vulkan driver to use, pick `vulkan-radeon` (AMD)
 - `glow` renders Markdown in the terminal (`glow MIGRATION.md`, or just
   `glow` in a folder to browse)
+- `solaar` configures the Logitech MX Master 4 (DPI, SmartShift, thumb
+  wheel, buttons, haptics). See the mouse step in Section 4
 - `dcraw` is for Strata's camera RAW previews. `bind` gives `dig` for
   AdGuard/DNS debugging
 - Left off on purpose: `wev` (keycode viewer, only needed for the laptop's
-  JIS remap), and `clang`/`llvm` (only for photo-badge/PlatformIO work; add
-  them when that resumes)
+  JIS remap), `clang`/`llvm` (only for photo-badge/PlatformIO work; add
+  them when that resumes), and `esptool` (Cardputer flashing; add it if
+  that moves to the desktop)
 - Omarchy already provides `docker`, `obsidian`, `mise`, `uv`, `gh`, node,
   and `claude` (via mise), so don't reinstall those
 
@@ -261,6 +264,21 @@ hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
   - `omarchy default agent claude`
   - `omarchy default terminal ghostty` (switched from foot 2026-11-15 for
     FiraCode ligatures and the ghost animation)
+- [ ] **Mouse** (Logitech MX Master 4 via its USB receiver, plugged into
+      the KVM). Hand-edit `~/.config/hypr/input.lua` (not stowed: same
+      Omarchy-overwrite hazards as `monitors.lua`). Append:
+      ```lua
+      -- Logitech MX Master 4 (USB receiver via KVM): standard scroll, no acceleration.
+      hl.device({ name = "logitech-usb-receiver-mouse", accel_profile = "flat" })
+      ```
+      The key name matters: a bare `"flat"` (no `accel_profile =`) is a
+      silent no-op. **Don't** copy the laptop's `kb_layout = "us-jis"` or
+      touchpad block. Scroll stays standard (natural felt inverted on a
+      wheel). Check the device name with `hyprctl devices` if the line
+      doesn't take
+- [ ] Solaar: set the MX4's DPI by feel (laptop testing was at 1600; the
+      5120px-wide desk likely wants more). Leave Solaar's scroll
+      **Direction** toggles off, since Hyprland owns direction
 - [ ] Theme: Tokyo Night (`omarchy-theme-set`)
 - [ ] **Chrome UI text size** (tabs, address bar, menus). Chrome on Linux
       takes its UI font from GTK settings, which live in dconf (not
@@ -396,4 +414,4 @@ Windows client, Docker Desktop, `bm-14.1.0.exe` (BenchMate, a Windows-only
 benchmark validator; Section 2 covers burn-in instead).
 
 ## Unresolved
-- [ ] Shipping: held in customs, no ETA (2026-11-15)
+- [x] Shipping: arrived 2026-11-19
