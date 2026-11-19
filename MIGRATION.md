@@ -9,6 +9,8 @@ The desktop replaces the Beelink on the desk KVM; the Beelink becomes a
 travel PC. Don't wipe it as part of this.
 
 **Status:** arrived and built 2026-11-19; migration started 2026-11-19.
+**Paused 2026-11-19 after Section 3 pacman + Cider. Resume at Section 3
+"Non-pacman tools" (Strata, b2), then Section 4 (`git pull` first).**
 Inventory last diffed against the laptop on **2026-11-19**
 (`pacman -Qqe` vs Omarchy's package lists, `~/.local/bin`, webapps, hypr
 overrides, services).
@@ -115,7 +117,7 @@ laptop and push now and then so progress survives a multi-day setup.
 
 ## 3. Packages (diffed from the laptop)
 Everything below was installed explicitly on the laptop and is not part of
-Omarchy's defaults, plus Steam:
+Omarchy's defaults, plus Steam. **Installed on the desktop 2026-11-19.**
 
 ```
 sudo pacman -S --needed stow zsh yazi git-delta lazydocker \
@@ -156,17 +158,17 @@ Notes:
   and `claude` (via mise), so don't reinstall those
 
 **Cider** (installed 2026-11-12) comes from its own pacman repo, not the AUR:
-- [ ] Import and locally sign the repo key (fingerprint
+- [x] Import and locally sign the repo key (fingerprint
       `A0CD6B993438E22634450CDD2A236C3F42A61682`, Cider Collective) per
       Cider's Linux docs
-- [ ] Append the repo to `/etc/pacman.conf`, and **don't paste the closing
+- [x] Append the repo to `/etc/pacman.conf` (via `sudo nvim`, no heredoc), and **don't paste the closing
       `EOF`** this time:
       ```
       [cidercollective]
       SigLevel = Required TrustedOnly
       Server = https://repo.cider.sh/arch
       ```
-- [ ] `sudo pacman -Sy cider`, then sign in to Apple Music. It sets itself as
+- [ ] `sudo pacman -Sy cider` (installed 2026-11-19), then sign in to Apple Music (pending). It sets itself as
       the handler for `music://`, `itms://`, and similar links automatically
 
 **Non-pacman tools:**
