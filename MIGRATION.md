@@ -316,16 +316,16 @@ hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
 ## 5. SSH (NAS only) & Claude
 GitHub stays on HTTPS through `gh` (Section 4). The SSH key below is only
 for the NAS.
-- [ ] `ssh-keygen -t ed25519` (a new key per machine; don't copy the
+- [x] `ssh-keygen -t ed25519` (a new key per machine; don't copy the
       laptop's)
-- [ ] Recreate `~/.ssh/config` (not tracked):
+- [x] Recreate `~/.ssh/config` (not tracked):
       ```
       Host nas
         HostName 192.168.68.55
         User senchou
       ```
       then `ssh-copy-id nas` and check that `ssh nas` lands in zsh
-- [ ] **Claude memory:** before the first `claude` run,
+- [x] **Claude memory:** before the first `claude` run,
       `mkdir -p ~/.claude/projects/-home-senchou` then
       `ln -s ~/Projects/claude-memory ~/.claude/projects/-home-senchou/memory`
 - [ ] `claude`, then log in. Check that it sees MEMORY.md
