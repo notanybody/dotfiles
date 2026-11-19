@@ -330,6 +330,9 @@ export WAYLAND_DISPLAY=$(ls /run/user/1000 | grep -m1 '^wayland-[0-9]*$')
       5120px-wide desk likely wants more). Leave Solaar's scroll
       **Direction** toggles off, since Hyprland owns direction
 - [x] Theme: Tokyo Night (`omarchy-theme-set`)
+- [ ] Custom themes (made 2026-11-16 with Aether, not in dotfiles):
+      `houshou-marine` and `okayu-xmas` in `~/.config/omarchy/themes/`.
+      From the laptop: `scp -r ~/.config/omarchy/themes/{houshou-marine,okayu-xmas} omarchy-desktop:.config/omarchy/themes/`
 - [x] **Chrome UI text size** (tabs, address bar, menus). Chrome on Linux
       takes its UI font from GTK settings, which live in dconf (not
       dotfiles). The laptop has:
