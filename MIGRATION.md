@@ -9,6 +9,9 @@ The desktop replaces the Beelink on the desk KVM; the Beelink becomes a
 travel PC. Don't wipe it as part of this.
 
 **Status:** arrived and built 2026-11-19; migration started 2026-11-19.
+**Daily-driver ready 2026-11-19:** Sections 0–7 and 9 done (project
+reconnects + photo-badge deferred). Left: Section 8 AI host (ufw ports,
+GTT, optional swapfile, KoboldCpp/SwarmUI), Ethernet cable.
 Inventory last diffed against the laptop on **2026-11-19**
 (`pacman -Qqe` vs Omarchy's package lists, `~/.local/bin`, webapps, hypr
 overrides, services).
@@ -330,7 +333,7 @@ export WAYLAND_DISPLAY=$(ls /run/user/1000 | grep -m1 '^wayland-[0-9]*$')
       5120px-wide desk likely wants more). Leave Solaar's scroll
       **Direction** toggles off, since Hyprland owns direction
 - [x] Theme: Tokyo Night (`omarchy-theme-set`)
-- [ ] Custom themes (made 2026-11-16 with Aether, not in dotfiles):
+- [x] Custom themes (made 2026-11-16 with Aether, not in dotfiles):
       `houshou-marine` and `okayu-xmas` in `~/.config/omarchy/themes/`.
       From the laptop: `scp -r ~/.config/omarchy/themes/{houshou-marine,okayu-xmas} omarchy-desktop:.config/omarchy/themes/`
 - [x] **Chrome UI text size** (tabs, address bar, menus). Chrome on Linux
@@ -361,7 +364,7 @@ for the NAS.
 - [x] **Claude memory:** before the first `claude` run,
       `mkdir -p ~/.claude/projects/-home-senchou` then
       `ln -s ~/Projects/claude-memory ~/.claude/projects/-home-senchou/memory`
-- [ ] `claude`, then log in. Check that it sees MEMORY.md
+- [x] `claude`, then log in. Check that it sees MEMORY.md (2026-11-19)
 
 ## 6. Networking & NAS
 - [x] (2026-11-19, node `omarchy-desktop`) `sudo systemctl enable --now tailscaled`, `sudo tailscale up`, then
@@ -458,7 +461,7 @@ for the NAS.
       separate session once everything above is done
 
 ## 9. Project reconnects
-- [ ] Strava dashboard, media downloader, ghost animation: pull from
+- [ ] *(Deferred 2026-11-19: not daily-use; reconnect when needed)* Strava dashboard, media downloader, ghost animation: pull from
       `scripts`/dotfiles and re-check the NAS paths. Recreate any `.venv`
       with `uv venv` / `sv`
 - [ ] photo-badge (cloned in Section 4): `pipx install platformio` (plus
