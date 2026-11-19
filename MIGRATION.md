@@ -93,12 +93,15 @@ laptop and push now and then so progress survives a multi-day setup.
       Matched 2026-11-19 (62Gi visible, 990 PRO 2TB)
 
 ## 2. Burn-in (before installing much else)
-- [ ] Tools: `sudo pacman -S stress-ng s-tui smartmontools` (`lm_sensors`
+- [x] Tools: `sudo pacman -S stress-ng s-tui smartmontools` (`lm_sensors`
       and `inxi` come with Omarchy), `yay -S mprime-bin`, and
       **memtest_vulkan** as the Linux release binary from its GitHub page
       (it isn't in the AUR; put it in `~/.local/bin`)
-- [ ] `inxi -Fz` and `sensors`: full hardware summary and baseline temps
-- [ ] `smartctl -a /dev/nvme0`: the new 2TB SSD (no errors, health OK)
+- [x] `inxi -Fz` and `sensors`: full hardware summary and baseline temps.
+      2026-11-19 idle: CPU ~49°C, GPU 45°C, NVMe 42°C, fans **0 RPM**
+      (fan-stop at idle; confirm they spin under load). BIOS INSYDE 03.06
+      (2026-07-13). NICs: RTL8126 5GbE `enp191s0`, MT7925 Wi-Fi 7
+- [x] `smartctl -a /dev/nvme0`: the new 2TB SSD (no errors, health OK). PASSED, 0 errors, 0% used (2026-11-19)
 - [ ] `memtest_vulkan`: VRAM/unified memory. Let it run at least a few
       minutes with zero errors
 - [ ] `stress-ng` with `s-tui` watching: CPU/thermals (stand-in for OCCT).
@@ -376,9 +379,10 @@ for the NAS.
       Check with `omarchy-sleep-disabled && echo off`. The screen lock and
       screen-off still work as normal. The alternative, if idle power
       matters later, is Wake-on-LAN from the NAS
-- [ ] Optional: swap shows 124Gi = 62G zram + (likely) a ~62G
-      hibernation swapfile from the installer. With hibernation off it's
-      dead weight. Check `swapon --show` before removing anything
+- [ ] Optional: swap shows 124Gi = 62G zram + a 62G `/swap/swapfile`
+      (confirmed by inxi 2026-11-19) the installer made for hibernation.
+      With hibernation off it's dead weight. Check `swapon --show` and how
+      Omarchy references it (fstab, resume hook) before removing anything
 - [ ] **GPU memory limit (GTT).** By default the GPU can borrow about half
       of RAM (~32GB). Check first: `sudo dmesg | grep -i 'gtt'` shows the
       current size. To allow ~48GB, add the kernel options
