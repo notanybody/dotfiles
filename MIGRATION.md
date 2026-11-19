@@ -166,7 +166,7 @@ Notes:
       SigLevel = Required TrustedOnly
       Server = https://repo.cider.sh/arch
       ```
-- [ ] `sudo pacman -Sy cider` (installed 2026-11-19), then sign in to Apple Music (pending). It sets itself as
+- [x] `sudo pacman -Sy cider` (installed 2026-11-19), then sign in to Apple Music (done 2026-11-19). It sets itself as
       the handler for `music://`, `itms://`, and similar links automatically
 
 **Non-pacman tools:**
@@ -382,7 +382,7 @@ for the NAS.
       Bitwarden desktop + browser extension, pointed at
       `vault.tail90599c.ts.net` (YubiKey)
 - [ ] `bw config server https://vault.tail90599c.ts.net` for bitwarden-cli
-- [ ] Webapps (SUPER+SPACE, Install Web App, or `omarchy-webapp-install`).
+- [x] (copied via scp 2026-11-19) Webapps (SUPER+SPACE, Install Web App, or `omarchy-webapp-install`).
       Faster: copy the launchers + icons from the laptop over Tailscale
       (run on the laptop):
       ```
@@ -409,7 +409,8 @@ for the NAS.
 - [ ] Obsidian app: open the vault at `/mnt/nas/senchou/obsidian-vault`
       (`obsidian.nvim` already points there via `omarchy/`)
 - [ ] Logins: Discord, Cider/Apple Music, Proton, Chrome, Steam, OBS
-      settings (re-create scenes by hand)
+      settings (re-create scenes by hand). 2026-11-19: Discord, Proton,
+      Ghostfolio, Actual, Cider done; Steam updating
 
 ## 8. Desktop-only: AI host prep
 - [ ] **Turn system sleep off** (decided 2026-11-15; revisit once you see
