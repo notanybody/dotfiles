@@ -249,12 +249,16 @@ hl.monitor({ output = "desc:<M27Q description>",  mode = "2560x1440@144", positi
 -- Fallback for anything else plugged in later
 hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
 ```
-- [ ] `hyprctl monitors all`: copy each monitor's `description:` into the
-      two placeholders. The file is a symlink into the repo, so commit the
+- [x] `hyprctl monitors all`: copy each monitor's `description:` into the
+      two placeholders (2026-11-19: `M27UA 24240B007293` on DP-1, `M27Q
+      0x01010101` on HDMI-A-1; the M27Q's real rate is **143.86**, use that).
+      Over SSH, hyprctl needs `-i 0`. A live edit applied scale/position but
+      stayed at 60Hz (`Cannot commit when a page-flip is awaiting` in the
+      log); `hyprctl reload` fixed it. The file is a symlink into the repo, so commit the
       change from `~/Projects/dotfiles`
 - [ ] Move the mouse along the shared edge, top to bottom. There should be
       no jump
-- [ ] `hyprctl monitors` shows 160 and 144 Hz. If the M27UA falls back to
+- [x] `hyprctl monitors` shows 160 and 144 Hz (160.001 / 143.856, 2026-11-19). If the M27UA falls back to
       60Hz, the DP cable or the KVM's DP port is the limit
 - [ ] XWayland apps (some Electron/older apps) may look small on the 4K at
       GDK_SCALE 1. That's expected; it keeps them sharp
