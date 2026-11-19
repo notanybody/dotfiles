@@ -274,7 +274,13 @@ hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
     into the repo. If `git status` shows `monitors.lua` changed after an
     Omarchy update, `git restore` it
 
-**Manual tweaks** (not stowable; see Section 0):
+**Manual tweaks** (not stowable; see Section 0). Doing these over SSH
+from the laptop works if the session points at the desktop's Hyprland and
+display first:
+```
+export HYPRLAND_INSTANCE_SIGNATURE=$(ls /run/user/1000/hypr | head -1)
+export WAYLAND_DISPLAY=$(ls /run/user/1000 | grep -m1 '^wayland-[0-9]*$')
+```
 - [ ] `~/.config/hypr/hyprland.lua`: add
       `hl.env("XCURSOR_THEME", "capitaine-cursors-light")`, then tell GTK
       apps (Chrome, file pickers) too, or they keep the default cursor:
@@ -296,7 +302,7 @@ hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
       tab/split/fullscreen keys. Reload with Ctrl+Shift+, then check
       `ghostty +list-keybinds | wc -l` shows 34 and copying text shows no
       toast. If an Omarchy update regenerates the config, re-add the line
-- [ ] Default apps (Omarchy ships Chromium and keeps it installed, but the
+- [x] (2026-11-19; terminal is stored in `~/.config/xdg-terminals.list`, browser in `mimeapps.list`) Default apps (Omarchy ships Chromium and keeps it installed, but the
       laptop uses Chrome):
   - `omarchy default browser chrome`: sets Chrome for links and for
     webapps (`omarchy-launch-webapp` uses the default browser). Check with
