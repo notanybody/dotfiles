@@ -465,7 +465,7 @@ for the NAS.
       `clang llvm`). The first `pio run` rebuilds `.pio/` (~98MB of
       toolchains, gitignored). Flashing goes through `/dev/ttyACM0`, so add
       yourself to `uucp` if it isn't already set (the laptop has it)
-- [ ] `stream`: check that streamlink plays through mpv (`omarchy/` stows
+- [x] (2026-11-19, stream + record) `stream`: check that streamlink plays through mpv (`omarchy/` stows
       `streamlink/config`)
 - [ ] mGBA saves via Syncthing. The NAS is the hub
       (`https://sync.tail90599c.ts.net`, login in Vaultwarden "Syncthing – NAS"),
