@@ -406,7 +406,7 @@ for the NAS.
   - Check the SUPER+SHIFT+D (Discord) and SUPER+SHIFT+L (Linkding)
     binds; they come from the stowed `bindings.lua` and match on
     `chrome-<site>`
-- [ ] Obsidian app: open the vault at `/mnt/nas/senchou/obsidian-vault`
+- [x] (2026-11-19; also D/L binds + Solaar DPI) Obsidian app: open the vault at `/mnt/nas/senchou/obsidian-vault`
       (`obsidian.nvim` already points there via `omarchy/`)
 - [x] Logins: Discord, Cider/Apple Music, Proton, Chrome, Steam, OBS
       settings (re-create scenes by hand). 2026-11-19: Discord, Proton,
