@@ -108,8 +108,10 @@ laptop and push now and then so progress survives a multi-day setup.
       GTT limit exposes at BIOS minimum; re-check after the Section 8 GTT bump)
 - [x] `stress-ng` with `s-tui` watching: CPU/thermals (stand-in for OCCT).
       Watch the Noctua fan curve. 2026-11-19: 15 min, 32 threads, 0 failed,
-      57.3k bogo ops/s sustained (vs 56.3k in the first 30s, so no throttling)
-- [ ] `mprime` for a longer soak, if you want one
+      57.3k bogo ops/s sustained (vs 56.3k in the first 30s, so no throttling).
+      Under load: Tctl **84°C** at **140W** PPT, fan1 **2123 RPM** (fan2/3
+      read 0: unused headers), GPU edge 52°C
+- [ ] `mprime` for a longer soak, if you want one (skipped at setup 2026-11-19; `mprime -t` overnight if ever needed)
 
 ## 3. Packages (diffed from the laptop)
 Everything below was installed explicitly on the laptop and is not part of
