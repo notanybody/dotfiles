@@ -383,6 +383,18 @@ for the NAS.
       `vault.tail90599c.ts.net` (YubiKey)
 - [ ] `bw config server https://vault.tail90599c.ts.net` for bitwarden-cli
 - [ ] Webapps (SUPER+SPACE, Install Web App, or `omarchy-webapp-install`).
+      Faster: copy the launchers + icons from the laptop over Tailscale
+      (run on the laptop):
+      ```
+      cd ~/.local/share/applications && scp Actual.desktop DressMyRun.desktop \
+        Ghostfolio.desktop linkding.desktop 'Proton Mail.desktop' Tailscale.desktop \
+        Discord.desktop omarchy-desktop:.local/share/applications/
+      ssh omarchy-desktop mkdir -p .local/share/icons/hicolor/256x256/apps
+      cd ~/.local/share/icons/hicolor/256x256/apps && scp actual.png dressmyrun.png \
+        ghostfolio.png linkding.png proton-mail.png tailscale.png \
+        omarchy-desktop:.local/share/icons/hicolor/256x256/apps/
+      ```
+      (Discord's icon `omarchy-discord` ships with Omarchy.)
       These were added by hand on the laptop:
   - Actual: `https://actual.tail90599c.ts.net`
   - Ghostfolio: `https://ghostfolio.tail90599c.ts.net`
