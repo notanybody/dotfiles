@@ -365,7 +365,7 @@ for the NAS.
       22 proto tcp`, laptop key via `ssh-copy-id omarchy-desktop`, LAN rule
       deleted. From the laptop: `ssh omarchy-desktop`. Over SSH, `hyprctl`
       and `omarchy-*` need the two `export`s from Section 4
-- [ ] NAS mount: create `/etc/samba/credentials-nas` by hand
+- [x] (2026-11-19; password = the normal UGREEN NAS login; `cifs-utils` comes with Omarchy) NAS mount: create `/etc/samba/credentials-nas` by hand
       (`username=`/`password=`, `chmod 600`), add **both** CIFS lines from the
       README (`personal_folder` + `stash`) to `/etc/fstab`,
       `sudo mkdir -p /mnt/nas/senchou /mnt/nas/stash`, then
