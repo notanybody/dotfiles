@@ -355,7 +355,7 @@ for the NAS.
 - [ ] `claude`, then log in. Check that it sees MEMORY.md
 
 ## 6. Networking & NAS
-- [ ] `sudo systemctl enable --now tailscaled`, `sudo tailscale up`, then
+- [x] (2026-11-19, node `omarchy-desktop`) `sudo systemctl enable --now tailscaled`, `sudo tailscale up`, then
       approve the node in the admin console. Turn off key expiry for this
       node (it's a server for the AI stack)
 - [ ] NAS mount: create `/etc/samba/credentials-nas` by hand
