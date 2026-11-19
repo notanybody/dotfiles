@@ -219,8 +219,8 @@ LocalSend, VLC (streamlink already uses mpv).
   - **Skip** `xkb` (the desktop keyboard is standard US; the JIS remap is
     laptop-only)
   - **Never** stow `wsl` or `nas`
-- [ ] `chsh -s /usr/bin/zsh`, then log out and back in
-- [ ] Re-link the `stream` script: `ln -s ~/Projects/scripts/stream
+- [x] `chsh -s /usr/bin/zsh`, then log out and back in
+- [x] Re-link the `stream` script: `ln -s ~/Projects/scripts/stream
       ~/.local/bin/stream`
 
 **Monitors** (`desktop/` package): two Gigabytes through an **iDock B10
