@@ -172,7 +172,7 @@ Notes:
       the handler for `music://`, `itms://`, and similar links automatically
 
 **Non-pacman tools:**
-- [ ] Strata file manager: run the release `install.sh` (check its sha256 and
+- [x] (v1.2.1, 2026-11-19; run from a desktop terminal, not SSH) Strata file manager: run the release `install.sh` (check its sha256 and
       read it first). Pick launcher, default folder handler, Open file
       location, portal dialogs, and camera RAW. **Skip** the installer's
       Omarchy keybinds and udiskie (stow brings our binds). Then in Settings
