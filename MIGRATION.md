@@ -9,8 +9,6 @@ The desktop replaces the Beelink on the desk KVM; the Beelink becomes a
 travel PC. Don't wipe it as part of this.
 
 **Status:** arrived and built 2026-11-19; migration started 2026-11-19.
-**Paused 2026-11-19 after Section 3 pacman + Cider. Resume at Section 3
-"Non-pacman tools" (Strata, b2), then Section 4 (`git pull` first).**
 Inventory last diffed against the laptop on **2026-11-19**
 (`pacman -Qqe` vs Omarchy's package lists, `~/.local/bin`, webapps, hypr
 overrides, services).
@@ -281,17 +279,17 @@ display first:
 export HYPRLAND_INSTANCE_SIGNATURE=$(ls /run/user/1000/hypr | head -1)
 export WAYLAND_DISPLAY=$(ls /run/user/1000 | grep -m1 '^wayland-[0-9]*$')
 ```
-- [ ] `~/.config/hypr/hyprland.lua`: add
+- [x] `~/.config/hypr/hyprland.lua`: add
       `hl.env("XCURSOR_THEME", "capitaine-cursors-light")`, then tell GTK
       apps (Chrome, file pickers) too, or they keep the default cursor:
       `gsettings set org.gnome.desktop.interface cursor-theme capitaine-cursors-light`.
       Size stays the default 24. Takes effect after a re-login
-- [ ] Font: `omarchy-font-set "FiraCode Nerd Font"` (sets the family in
+- [x] Font: `omarchy-font-set "FiraCode Nerd Font"` (sets the family in
       every terminal), then set `font-size = 10` in `~/.config/ghostty/config`.
       Ghostty only reads its own config and can't follow a system font size,
       so this is a hand edit. The other terminals aren't used, so leave
       their sizes alone
-- [ ] Ghostty overrides (lean-out, 2026-11-15): in `~/.config/ghostty/config`,
+- [x] Ghostty overrides (lean-out, 2026-11-15): in `~/.config/ghostty/config`,
       add this under the theme `config-file` line:
       ```
       # Personal overrides (tracked in dotfiles; loads last, wins over everything)
@@ -310,7 +308,7 @@ export WAYLAND_DISPLAY=$(ls /run/user/1000 | grep -m1 '^wayland-[0-9]*$')
   - `omarchy default agent claude`
   - `omarchy default terminal ghostty` (switched from foot 2026-11-15 for
     FiraCode ligatures and the ghost animation)
-- [ ] **Mouse** (Logitech MX Master 4 via its USB receiver, plugged into
+- [x] **Mouse** (Logitech MX Master 4 via its USB receiver, plugged into
       the KVM). Hand-edit `~/.config/hypr/input.lua` (not stowed: same
       Omarchy-overwrite hazards as `monitors.lua`). Append:
       ```lua
@@ -325,8 +323,8 @@ export WAYLAND_DISPLAY=$(ls /run/user/1000 | grep -m1 '^wayland-[0-9]*$')
 - [ ] Solaar: set the MX4's DPI by feel (laptop testing was at 1600; the
       5120px-wide desk likely wants more). Leave Solaar's scroll
       **Direction** toggles off, since Hyprland owns direction
-- [ ] Theme: Tokyo Night (`omarchy-theme-set`)
-- [ ] **Chrome UI text size** (tabs, address bar, menus). Chrome on Linux
+- [x] Theme: Tokyo Night (`omarchy-theme-set`)
+- [x] **Chrome UI text size** (tabs, address bar, menus). Chrome on Linux
       takes its UI font from GTK settings, which live in dconf (not
       dotfiles). The laptop has:
       ```
