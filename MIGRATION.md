@@ -64,10 +64,17 @@ laptop and push now and then so progress survives a multi-day setup.
       claude-memory changes
 
 ## 1. OS install & firmware
-- [ ] BIOS first: set the iGPU memory (UMA) split so up to ~48GB can go to
-      the GPU, per the AI stack plan. Doing it now means the Section 2
-      memory test covers the real split
-- [ ] Install Omarchy with the **same username, `senchou`**. Claude's memory
+- [x] BIOS (F2): **iGPU Memory Config = Auto, Memory Size = minimum
+      (0.5GB), left as-is** (decided 2026-11-19). A fixed 48GB carve-out
+      would leave Linux ~16GB all the time. Instead the GPU borrows system
+      RAM on demand (GTT), and the limit is raised with a kernel option in
+      Section 8. No BIOS trips to change it later
+- [x] BIOS → Security → Secure Boot → **Disabled**. The Omarchy ISO
+      isn't signed, so with it on the USB fails with "EFI USB Device boot
+      failed" (2026-11-19)
+- [x] Install Omarchy with the **same username, `senchou`**, hostname
+      **`omarchy-desktop`** (the laptop is `omarchy` locally,
+      `omarchy-laptop` on the tailnet) (2026-11-19). Claude's memory
       path (`~/.claude/projects/-home-senchou/`), the fstab `uid=1000`, and the
       Strata binds all assume it
 - [ ] Plug in Ethernet, then `omarchy-update`
@@ -364,6 +371,14 @@ for the NAS.
       Check with `omarchy-sleep-disabled && echo off`. The screen lock and
       screen-off still work as normal. The alternative, if idle power
       matters later, is Wake-on-LAN from the NAS
+- [ ] **GPU memory limit (GTT).** By default the GPU can borrow about half
+      of RAM (~32GB). Check first: `sudo dmesg | grep -i 'gtt'` shows the
+      current size. To allow ~48GB, add the kernel options
+      `ttm.pages_limit=12582912 ttm.page_pool_size=12582912` (48GB in 4KB
+      pages) to the limine cmdline (`/etc/default/limine`, then
+      `sudo limine-update`), reboot, and re-check dmesg.
+      `amdgpu.gttsize` is the old, deprecated way. Verify the exact steps on
+      the box before applying
 - [ ] Firewall is **ufw** on Omarchy (not firewalld). Open the AI ports on
       Tailscale only, e.g.
       `sudo ufw allow in on tailscale0 to any port 5001 proto tcp` (KoboldCpp)
