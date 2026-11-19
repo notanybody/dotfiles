@@ -83,7 +83,8 @@ laptop and push now and then so progress survives a multi-day setup.
       found 2026-11-19), then `fwupdmgr refresh && fwupdmgr get-updates`, then
       `fwupdmgr update` (Framework ships BIOS updates through LVFS). Reboot
       if it asks. If the BIOS update resets settings, re-check UMA
-- [ ] Mesa/amdgpu + `vulkan-radeon` cover the Strix Halo APU, so no vendor
+- [x] (2026-11-19: `AMD Radeon 8060S Graphics (RADV STRIX_HALO)`, Mesa
+      26.2.5, Vulkan 1.4) Mesa/amdgpu + `vulkan-radeon` cover the Strix Halo APU, so no vendor
       driver is needed. `sudo pacman -S vulkan-tools` (not in Omarchy),
       then check with `vulkaninfo --summary` (Vulkan is also what KoboldCpp
       uses)
