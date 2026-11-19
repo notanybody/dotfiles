@@ -49,8 +49,10 @@
 	name = Jackson Willis
 	email = jackwillisnyc@gmail.com
 [credential "https://github.com"]
+  helper =
 	helper = !gh auth git-credential 
 	helper = !/home/senchou/.local/share/mise/installs/gh/2.98.0/gh_2.98.0_linux_amd64/bin/gh auth git-credential
 [credential "https://gist.github.com"]
+  helper =
 	helper = !gh auth git-credential
 	helper = !/home/senchou/.local/share/mise/installs/gh/2.98.0/gh_2.98.0_linux_amd64/bin/gh auth git-credential
