@@ -217,7 +217,7 @@ LocalSend, VLC (streamlink already uses mpv).
   - **Skip** `xkb` (the desktop keyboard is standard US; the JIS remap is
     laptop-only)
   - **Never** stow `wsl` or `nas`
-- [ ] **Zap** (zsh plugin manager; `omarchy/.zshrc` uses its `plug` for
+- [x] **Zap** (zsh plugin manager; `omarchy/.zshrc` uses its `plug` for
       autosuggestions + syntax highlighting). Not in any package, and missed
       until 2026-11-19. Clone it rather than running its installer (the
       installer rewrites `~/.zshrc`, which is a stow link):
