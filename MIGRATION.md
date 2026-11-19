@@ -84,10 +84,12 @@ laptop and push now and then so progress survives a multi-day setup.
       `fwupdmgr update` (Framework ships BIOS updates through LVFS). Reboot
       if it asks. If the BIOS update resets settings, re-check UMA
 - [ ] Mesa/amdgpu + `vulkan-radeon` cover the Strix Halo APU, so no vendor
-      driver is needed. Check with `vulkaninfo --summary` (Vulkan is also
-      what KoboldCpp uses)
-- [ ] Write the specs memory: `cat /sys/class/dmi/id/product_name`, `lscpu`,
-      `free -h`, `lsblk`. Check them against the order (395 / 64GB / 2TB)
+      driver is needed. `sudo pacman -S vulkan-tools` (not in Omarchy),
+      then check with `vulkaninfo --summary` (Vulkan is also what KoboldCpp
+      uses)
+- [x] Write the specs memory: `cat /sys/class/dmi/id/product_name`, `lscpu`,
+      `free -h`, `lsblk`. Check them against the order (395 / 64GB / 2TB).
+      Matched 2026-11-19 (62Gi visible, 990 PRO 2TB)
 
 ## 2. Burn-in (before installing much else)
 - [ ] Tools: `sudo pacman -S stress-ng s-tui smartmontools` (`lm_sensors`
@@ -373,6 +375,9 @@ for the NAS.
       Check with `omarchy-sleep-disabled && echo off`. The screen lock and
       screen-off still work as normal. The alternative, if idle power
       matters later, is Wake-on-LAN from the NAS
+- [ ] Optional: swap shows 124Gi = 62G zram + (likely) a ~62G
+      hibernation swapfile from the installer. With hibernation off it's
+      dead weight. Check `swapon --show` before removing anything
 - [ ] **GPU memory limit (GTT).** By default the GPU can borrow about half
       of RAM (~32GB). Check first: `sudo dmesg | grep -i 'gtt'` shows the
       current size. To allow ~48GB, add the kernel options
