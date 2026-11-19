@@ -138,6 +138,10 @@ Notes:
   XWayland (blurry UI)
 - `steam` needs multilib, which Omarchy already enables. When it asks
   which Vulkan driver to use, pick `vulkan-radeon` (AMD)
+- Prompts you'll get (2026-11-19): `lib32-vulkan-driver` → **12)
+  lib32-vulkan-radeon** (default 1 is NVIDIA). `nodejs-lts-jod and nodejs
+  are in conflict. Remove nodejs?` → **y** (bitwarden-cli needs the LTS
+  build; the laptop has only nodejs-lts-jod too, dev node comes from mise)
 - `glow` renders Markdown in the terminal (`glow MIGRATION.md`, or just
   `glow` in a folder to browse)
 - `solaar` configures the Logitech MX Master 4 (DPI, SmartShift, thumb
