@@ -78,7 +78,8 @@ laptop and push now and then so progress survives a multi-day setup.
       path (`~/.claude/projects/-home-senchou/`), the fstab `uid=1000`, and the
       Strata binds all assume it
 - [ ] Plug in Ethernet, then `omarchy-update`
-- [ ] Firmware: `sudo pacman -S fwupd` first (Omarchy doesn't ship it;
+- [x] Firmware (2026-11-19: BIOS already latest; only Secure Boot dbx
+      updates offered, skipped since Secure Boot is off): `sudo pacman -S fwupd` first (Omarchy doesn't ship it;
       found 2026-11-19), then `fwupdmgr refresh && fwupdmgr get-updates`, then
       `fwupdmgr update` (Framework ships BIOS updates through LVFS). Reboot
       if it asks. If the BIOS update resets settings, re-check UMA
