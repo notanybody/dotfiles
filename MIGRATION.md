@@ -177,7 +177,7 @@ Notes:
       location, portal dialogs, and camera RAW. **Skip** the installer's
       Omarchy keybinds and udiskie (stow brings our binds). Then in Settings
       → Appearance, turn on Follow Omarchy
-- [ ] `uv tool install b2` (B2 CLI for the off-site bucket)
+- [x] `uv tool install b2` (2026-11-19) (B2 CLI for the off-site bucket)
 - [ ] `pipx install platformio`: only when photo-badge work resumes
 
 **Optional** (not on the laptop; add only if you miss them): Chatterino,
