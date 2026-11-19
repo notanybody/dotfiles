@@ -175,11 +175,11 @@ Notes:
 LocalSend, VLC (streamlink already uses mpv).
 
 ## 4. Dotfiles & config
-- [ ] `gh auth login` (GitHub.com, **HTTPS**, log in with a web browser).
+- [x] `gh auth login` (GitHub.com, **HTTPS**, log in with a web browser).
       `gh` comes with Omarchy, and Omarchy's git config already uses it as
       the credential helper, so no SSH key is needed for GitHub
-- [ ] `mkdir ~/Projects`, then clone `dotfiles`, `scripts`, `claude-memory`,
-      and `photo-badge` there over HTTPS (`gh repo clone notanybody/<repo>`)
+- [x] `mkdir ~/Projects`, then clone `dotfiles`, `scripts`, `claude-memory`,
+      and `photo-badge` there over HTTPS (`gh repo clone notanybody/<repo>`) (2026-11-19)
 - [ ] Move Omarchy's default monitor file out of the way first, or stow
       will refuse to overwrite it:
       `mv ~/.config/hypr/monitors.lua ~/.config/hypr/monitors.lua.omarchy`
