@@ -15,10 +15,10 @@ hl.env("GDK_SCALE", tostring(omarchy_gdk_scale))
 -- the KVM. Fill in the exact text from `hyprctl monitors all` on first boot.
 
 -- M27UA: 27" 4K, DisplayPort, left
-hl.monitor({ output = "desc:<M27UA description>", mode = "3840x2160@160", position = "0x0", scale = 1.5 })
+hl.monitor({ output = "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27UA 24240B007293", mode = "3840x2160@160", position = "0x0", scale = 1.5 })
 
 -- M27Q: 27" 1440p, HDMI, right. Never use its 3840x2160 mode (it downscales; text gets soft)
-hl.monitor({ output = "desc:<M27Q description>", mode = "2560x1440@144", position = "2560x0", scale = 1 })
+hl.monitor({ output = "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 0x01010101", mode = "2560x1440@143.86", position = "2560x0", scale = 1 })
 
 -- Fallback for anything else plugged in later
 hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
