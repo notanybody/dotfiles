@@ -256,13 +256,13 @@ hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
       stayed at 60Hz (`Cannot commit when a page-flip is awaiting` in the
       log); `hyprctl reload` fixed it. The file is a symlink into the repo, so commit the
       change from `~/Projects/dotfiles`
-- [ ] Move the mouse along the shared edge, top to bottom. There should be
-      no jump
+- [x] Move the mouse along the shared edge, top to bottom. There should be
+      no jump (2026-11-19)
 - [x] `hyprctl monitors` shows 160 and 144 Hz (160.001 / 143.856, 2026-11-19). If the M27UA falls back to
       60Hz, the DP cable or the KVM's DP port is the limit
 - [ ] XWayland apps (some Electron/older apps) may look small on the 4K at
       GDK_SCALE 1. That's expected; it keeps them sharp
-- [ ] **KVM switch test:** with a few windows open on each monitor, switch
+- [x] (2026-11-19: worked, windows came back) **KVM switch test:** with a few windows open on each monitor, switch
       to the work laptop and back. Omarchy's per-monitor workspaces
       (`monitor-workspaces.lua`, matched by make/model/serial) should put
       everything back where it was. Note whether the B10 keeps the monitors
