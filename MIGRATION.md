@@ -233,7 +233,10 @@ hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
 
 **Manual tweaks** (not stowable; see Section 0):
 - [ ] `~/.config/hypr/hyprland.lua`: add
-      `hl.env("XCURSOR_THEME", "capitaine-cursors-light")`
+      `hl.env("XCURSOR_THEME", "capitaine-cursors-light")`, then tell GTK
+      apps (Chrome, file pickers) too, or they keep the default cursor:
+      `gsettings set org.gnome.desktop.interface cursor-theme capitaine-cursors-light`.
+      Size stays the default 24. Takes effect after a re-login
 - [ ] Font: `omarchy-font-set "FiraCode Nerd Font"` (sets the family in
       every terminal), then set `font-size = 10` in `~/.config/ghostty/config`.
       Ghostty only reads its own config and can't follow a system font size,
