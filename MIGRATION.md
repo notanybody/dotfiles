@@ -475,12 +475,14 @@ for the NAS.
         default `~/gba`). Wait for Up to Date, and check that
         `eza -T ~/Games/gba` shows `pokemon/` (no `_archive`, which is
         NAS-only)
-  - [ ] **Before the first launch, close mGBA on the laptop**, and play on
+  - [x] **Before the first launch, close mGBA on the laptop**, and play on
         only one machine at a time. Quit with File → Exit, never Ctrl+C
-  - [ ] mGBA: Tools → Settings → Audio/Video → Display driver →
+  - [x] mGBA: Tools → Settings → Audio/Video → Display driver →
         **Software (Qt)**, then restart. The OpenGL driver spams
         `Attempted flush to non-raster surface` on Qt5/Wayland
-  - [ ] Test: open a run with
+  - [x] Controller (8BitDo): Tools → Settings → Controllers → Gamepad,
+        pick it and **map the buttons**; a new machine starts unmapped (2026-11-19)
+  - [x] Test: open a run with
         `mgba-qt ~/Games/gba/pokemon/<run>/<run>.gba`, check that Continue
         shows the latest progress, save, quit, and confirm the laptop
         receives the new `.sav`
