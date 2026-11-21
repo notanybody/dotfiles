@@ -55,6 +55,20 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --color=spinner:#ff007c \
   "
 
+# --- hashcat helpers (shared) ---
+# Decode a hex string to text, e.g. the SSID-hex (field 6) of a .22000 capture.
+unhex() { printf '%b\n' "$(sed 's/../\\x&/g' <<< "$1")"; }
+
+# Read a cracked WPA result from a .22000 file: network name + password.
+# SSID comes from field 6 of the file; password from the potfile via --show.
+# Usage: wparesult ~/wordlists/mine.22000
+pwnwrk() {
+  local ssid pw
+  ssid=$(printf '%b' "$(cut -d'*' -f6 "$1" | head -1 | sed 's/../\\x&/g')")
+  pw=$(hashcat -m 22000 "$1" --show 2>/dev/null | cut -d: -f2-)
+  printf 'SSID:     %s\nPassword: %s\n' "$ssid" "${pw:-<not cracked yet>}"
+}
+
 # --- Platform Setup ---
 # Mac
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -147,5 +161,5 @@ if [[ -n "$NAS_ROOT" ]]; then
   function organize-incoming() {
     python3 "$SCRIPTS/organize/nas/process_incoming.py" "$NAS_ROOT/division/incoming" "$NAS_ROOT/division/onlyfans" "$@"
   }
-
+  
 fi

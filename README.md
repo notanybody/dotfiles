@@ -16,6 +16,9 @@ Personal dotfiles & scripts for my terminal setup.
 ### Theme
 - Tokyo Night Storm
 
+### Conventions
+- File naming: see [`NAMING.md`](NAMING.md)
+
 ## Machine-specific: Omarchy
 
 The `omarchy/` package overrides files that collide with Omarchy's own
