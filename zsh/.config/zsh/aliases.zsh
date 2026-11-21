@@ -61,11 +61,11 @@ unhex() { printf '%b\n' "$(sed 's/../\\x&/g' <<< "$1")"; }
 
 # Read a cracked WPA result from a .22000 file: network name + password.
 # SSID comes from field 6 of the file; password from the potfile via --show.
-# Usage: wparesult ~/wordlists/mine.22000
-pwnwrk() {
+# Usage: pwnnet ~/wordlists/mine.22000
+pwnnet() {
   local ssid pw
   ssid=$(printf '%b' "$(cut -d'*' -f6 "$1" | head -1 | sed 's/../\\x&/g')")
-  pw=$(hashcat -m 22000 "$1" --show 2>/dev/null | cut -d: -f2-)
+  pw=$(hashcat -m 22000 "$1" --show --outfile-format=2 2>/dev/null)
   printf 'SSID:     %s\nPassword: %s\n' "$ssid" "${pw:-<not cracked yet>}"
 }
 
