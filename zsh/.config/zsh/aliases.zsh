@@ -6,6 +6,7 @@ alias ls='eza --icons=auto'
 alias ll='eza -l --icons --git'
 alias la='eza -la --icons --git'
 alias lt='eza --tree --icons=auto'
+alias hashcat='hashcat --hwmon-temp-abort=97'
 
 # Alias Config + GitHub Push
 alias za='nvim ~/.config/zsh/aliases.zsh'
