@@ -49,10 +49,20 @@ laptop and push now and then so progress survives a multi-day setup.
   - NAS SMB password for `/etc/samba/credentials-nas`
 - [x] Built the **`desktop/` stow package** (2026-11-15; same pattern as `wsl/`/`nas/`):
       `desktop/.config/hypr/monitors.lua` with the layout from Section 4,
-      `desc:` placeholders included. **Only `monitors.lua`.** Fonts and the
-      cursor line can't be stowed safely: `omarchy-font-set` runs
-      `sed -i` on the terminal configs, which replaces a stow symlink with a
-      plain file. They stay as manual steps in Section 4
+      `desc:` placeholders included. Fonts can't be stowed safely:
+      `omarchy-font-set` runs `sed -i` on the terminal configs, which
+      replaces a stow symlink with a plain file. They stay as manual steps
+      in Section 4
+  - (2026-11-23) Added `input.lua` (Logitech mouse: flat accel,
+    sensitivity 0.4) and `hyprland.lua` (`XCURSOR_THEME`
+    capitaine-cursors-light) after the 4.5.0 `omarchy update` reset all
+    four hypr files to defaults. Package now holds `monitors.lua`,
+    `input.lua`, `hyprland.lua`
+  - **After every `omarchy update`:** look for `~/.config/hypr/*.bak.*`,
+    run `git status` here (refreshes `cp` *through* the links into the
+    repo → `git restore` the files), and `ls -la ~/.config/hypr` (some
+    migrations `mv` a new file over the link → plain file; move it aside
+    and re-`stow desktop`)
 - [x] Check the Framework Desktop's rear ports and your cables so the KVM's
       **DisplayPort** and **HDMI** inputs both connect directly (avoid
       adapters; one can cap refresh) (2026-11-19)
